@@ -28,3 +28,6 @@ dist-ssr
 
 # Stitch MCP config (contém chave de API)
 .agents/mcp_config.json
+
+.vercel
+.env*
