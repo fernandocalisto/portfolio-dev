@@ -32,9 +32,9 @@ async function parseRequestBody(req: any): Promise<any> {
 }
 
 const DEFAULT_MODELS = [
-  'meta-llama/llama-3.2-3b-instruct:free',
-  'google/gemini-2.0-flash-001:free',
-  'qwen/qwen-2.5-7b-instruct:free',
+  'openrouter/free',
+  'google/gemma-4-31b-it:free',
+  'qwen/qwen3.8-27b:free',
 ];
 
 export default async function handler(req: any, res: any) {
