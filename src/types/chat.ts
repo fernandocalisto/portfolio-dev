@@ -15,7 +15,7 @@ export interface ChatPart {
 
 export interface ChatHistoryItem {
   role: ChatRole;
-  parts: ChatPart[];
+  content: string;
 }
 
 export interface ChatRequestBody {

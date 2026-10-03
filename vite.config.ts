@@ -5,9 +5,9 @@ import path from 'path';
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
-  // Populate process.env with GEMINI_API_KEY for local API dev execution
-  if (env.GEMINI_API_KEY) {
-    process.env.GEMINI_API_KEY = env.GEMINI_API_KEY;
+  // Populate process.env with OPENROUTER_API_KEY for local API dev execution
+  if (env.OPENROUTER_API_KEY) {
+    process.env.OPENROUTER_API_KEY = env.OPENROUTER_API_KEY;
   }
   if (env.TELEGRAM_BOT_TOKEN) {
     process.env.TELEGRAM_BOT_TOKEN = env.TELEGRAM_BOT_TOKEN;

@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { ChatMessage, ChatHistoryItem } from '../types/chat';
+import { ChatMessage } from '../types/chat';
 
 const STORAGE_KEY = 'fc_portfolio_chat_history_v2';
 
@@ -106,12 +106,12 @@ export function useChat() {
       };
 
       // Prepare history excluding the welcome banner and error messages
-      const historyPayload: ChatHistoryItem[] = messages
+      const historyPayload = messages
         .filter((m) => m.id !== 'welcome-msg' && !m.error && m.content.trim() !== '')
         .slice(-8)
         .map((m) => ({
           role: m.role,
-          parts: [{ text: m.content }],
+          content: m.content,
         }));
 
       setMessages((prev) => [...prev, userMessage, initialModelMessage]);
