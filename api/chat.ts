@@ -5,11 +5,6 @@ interface ChatPart {
   text: string;
 }
 
-interface ChatHistoryItem {
-  role: 'user' | 'model';
-  parts: ChatPart[];
-}
-
 // In-memory rate limiting (max 25 requests per minute per IP)
 const ipRateLimitMap = new Map<string, { count: number; resetTime: number }>();
 
@@ -190,7 +185,6 @@ export default async function handler(req: any, res: any) {
       : DEFAULT_CANDIDATE_MODELS;
 
     let responseStream: any = null;
-    let successfulModel = '';
     let lastError: any = null;
 
     for (const model of candidateModels) {
@@ -204,7 +198,6 @@ export default async function handler(req: any, res: any) {
             maxOutputTokens: 1200,
           },
         });
-        successfulModel = model;
         break; // Stream successfully initialized
       } catch (err: any) {
         lastError = err;
