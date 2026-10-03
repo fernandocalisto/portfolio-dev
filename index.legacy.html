@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="pt-BR">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Fernando Henrique Braga Calisto | Desenvolvedor Full-Stack e Arquiteto de Software</title>
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap"
+    rel="stylesheet" />
+
+  <!-- Tailwind CSS v3 with Plugins -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+  <!-- Tailwind Configuration com a Nova Paleta de Cores Customizada -->
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              teal: '#185b63',       /* Cor primária: Petróleo / Deep Teal */
+              crimson: '#c0261c',    /* Acento vibrante: Carmesim / Rust Red */
+              amber: '#ba460d',      /* Acento quente: Terracota / Burnt Orange */
+              gold: '#c59538',       /* Acento nobre: Ocre Dourado / Warm Gold */
+              charcoal: '#404040',   /* Neutro de contraste: Carvão / Dark Slate */
+              dark: '#12161a',       /* Fundo principal escuro */
+              card: '#181e24',       /* Superfície dos cards */
+              cardHover: '#202830',  /* Hover de cards */
+              surface: '#14181e',    /* Superfícies secundárias */
+              border: '#2c3540',     /* Bordas sutis */
+              borderMuted: '#404040' /* Bordas dos divisores */
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom Styles: Background Geometry & Glowing Effects -->
+  <style data-purpose="custom-theme-styles">
+    body {
+      background-color: #101418;
+      background-image:
+        radial-gradient(circle at 18% 20%, rgba(24, 91, 99, 0.18) 0%, transparent 45%),
+        radial-gradient(circle at 85% 65%, rgba(186, 70, 13, 0.14) 0%, transparent 40%),
+        radial-gradient(circle at 50% 90%, rgba(197, 149, 56, 0.10) 0%, transparent 45%),
+        linear-gradient(rgba(18, 22, 26, 0.95), rgba(14, 18, 22, 0.98));
+      color: #cbd5e1;
+    }
+
+    /* Subtle geometric grid background pattern */
+    .bg-grid-pattern {
+      background-size: 40px 40px;
+      background-image:
+        linear-gradient(to right, rgba(64, 64, 64, 0.22) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(64, 64, 64, 0.22) 1px, transparent 1px);
+    }
+
+    /* Pixelated block accent borders */
+    .pixel-box-shadow {
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6), 0 0 15px -3px rgba(24, 91, 99, 0.25);
+    }
+
+    /* Glowing Accent Shadows */
+    .glow-teal-sm {
+      box-shadow: 0 0 16px rgba(24, 91, 99, 0.4);
+    }
+
+    .glow-amber-sm {
+      box-shadow: 0 0 16px rgba(186, 70, 13, 0.35);
+    }
+
+    .glow-gold-sm {
+      box-shadow: 0 0 16px rgba(197, 149, 56, 0.35);
+    }
+
+    .glow-crimson-sm {
+      box-shadow: 0 0 16px rgba(192, 38, 28, 0.35);
+    }
+
+    /* Logo placeholder interactive dashed styling */
+    .logo-slot {
+      transition: all 0.25s ease;
+    }
+
+    .logo-slot:hover {
+      transform: translateY(-2px);
+    }
+
+    /* Ocultar barra de rolagem do carrossel mas manter funcionamento */
+    .scrollbar-hide {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    .scrollbar-hide::-webkit-scrollbar {
+      display: none;
+    }
+  </style>
+</head>
+
+<body
+  class="font-sans antialiased text-slate-300 min-h-screen flex flex-col selection:bg-[#185b63] selection:text-white bg-grid-pattern">
+
+  <!-- BEGIN: MainHeader -->
+  <header
+    class="sticky top-0 z-50 backdrop-blur-md bg-[#12161a]/90 border-b border-[#404040]/50 transition-all duration-300">
+    <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+      <!-- Brand Logo -->
+      <a class="group flex items-center gap-1.5 font-mono font-bold text-lg sm:text-xl text-white tracking-wide hover:text-[#c59538] transition-colors duration-200"
+        href="#hero">
+        <span class="text-[#185b63] font-extrabold transition-transform group-hover:-translate-x-1">&lt;/</span>
+        <span class="text-slate-100 group-hover:text-white">Fernando Calisto</span>
+        <span class="text-[#185b63] font-extrabold transition-transform group-hover:translate-x-1">&gt;</span>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="hidden md:flex items-center gap-8 font-medium text-sm text-slate-400">
+        <a class="relative py-1 hover:text-[#c59538] transition-colors" href="#sobre">
+          Sobre
+        </a>
+        <a class="relative py-1 hover:text-[#c59538] transition-colors" href="#skills">
+          Skills
+        </a>
+        <a class="relative py-1 hover:text-[#c59538] transition-colors" href="#laboratorio">
+          Laboratório
+        </a>
+        <a class="relative py-1 hover:text-[#c59538] transition-colors" href="#contato">
+          Contato
+        </a>
+      </nav>
+
+      <!-- Contact Button Quick Action -->
+      <div class="flex items-center gap-3">
+        <a class="inline-flex items-center justify-center px-4 py-2 text-xs font-mono font-semibold text-[#c59538] border border-[#c59538]/60 rounded hover:bg-[#ba460d] hover:text-white hover:border-[#ba460d] transition-all duration-300 shadow-[0_0_12px_rgba(197,149,56,0.15)]"
+          href="#contato">
+          FALE COMIGO
+        </a>
+      </div>
+    </div>
+  </header>
+  <!-- END: MainHeader -->
+
+  <main class="flex-grow">
+    <!-- BEGIN: HeroSection -->
+    <section class="relative pt-12 pb-20 md:py-24 overflow-hidden" data-purpose="hero-banner" id="hero">
+      <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <!-- Hero Information / Left Column -->
+        <div class="lg:col-span-7 space-y-6">
+          <div
+            class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#185b63]/15 border border-[#185b63]/40 text-[#c59538] font-mono text-xs tracking-wider uppercase">
+            <span class="w-2 h-2 rounded-full bg-[#ba460d] animate-pulse"></span>
+            Desenvolvedor Full-Stack e Arquiteto de Software
+          </div>
+
+          <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight">
+            Fernando Henrique <br class="hidden sm:inline" /><span
+              class="text-transparent bg-clip-text bg-gradient-to-r from-[#185b63] via-[#c59538] to-[#ba460d]">Braga
+              Calisto</span>
+          </h1>
+
+          <p class="text-slate-400 text-base sm:text-lg leading-relaxed max-w-xl">
+            Arquiteto de software e desenvolvedor full-stack com forte mentalidade <span
+              class="text-[#c59538] font-semibold">AI-First</span>. Fundador da startup <strong
+              class="text-white">TALOS</strong> e CEO da <strong class="text-white">DRAKON Code</strong>, focado na
+            criação de soluções escaláveis, automação inteligente e interfaces de alta performance.
+          </p>
+
+          <!-- Action Buttons -->
+          <div class="pt-4 flex flex-wrap items-center gap-4">
+            <a class="px-7 py-3.5 rounded bg-[#185b63] text-white hover:bg-[#1f737d] font-mono text-sm font-bold tracking-wider uppercase transition-all duration-300 glow-teal-sm inline-flex items-center gap-2 border border-[#185b63]"
+              href="#laboratorio">
+              Ver Projetos
+              <span class="text-white font-bold">→</span>
+            </a>
+            <a class="px-6 py-3.5 rounded bg-transparent border border-[#404040] hover:border-[#ba460d] text-slate-300 hover:text-[#ba460d] font-mono text-sm tracking-wider uppercase transition-colors inline-flex items-center gap-2"
+              href="#contato">
+              Entrar em Contato
+            </a>
+          </div>
+        </div>
+
+        <!-- Hero Graphic Mockup / Right Column -->
+        <div class="lg:col-span-5 flex justify-center items-center relative">
+          <div
+            class="relative w-full max-w-md p-6 rounded-2xl bg-gradient-to-b from-[#181e24]/95 to-[#12161a]/95 border border-[#404040]/70 shadow-2xl">
+            <div
+              class="relative aspect-square w-full rounded-xl bg-[#0e1216] border border-[#404040]/60 p-5 flex flex-col justify-between overflow-hidden">
+              <div class="absolute -top-10 -right-10 w-44 h-44 bg-[#185b63]/15 rounded-full blur-2xl"></div>
+
+              <!-- Mockup Header -->
+              <div class="flex items-center justify-between border-b border-[#404040]/60 pb-3">
+                <div class="flex items-center gap-2">
+                  <span class="w-3 h-3 rounded-full bg-[#c0261c] inline-block" title="Fechar"></span>
+                  <span class="w-3 h-3 rounded-full bg-[#c59538] inline-block" title="Minimizar"></span>
+                  <span class="w-3 h-3 rounded-full bg-[#185b63] inline-block" title="Expandir"></span>
+                </div>
+                <div class="text-[11px] font-mono text-slate-400">architecture.ts — TALOS &amp; DRAKON</div>
+                <span class="text-[#c59538] text-xs font-mono">&lt;AI/&gt;</span>
+              </div>
+
+              <!-- Center Graphic -->
+              <div class="my-auto flex flex-col items-center justify-center py-4 text-center">
+                <div
+                  class="w-20 h-20 rounded-2xl bg-gradient-to-br from-[#185b63]/25 to-[#ba460d]/15 border border-[#185b63]/50 flex items-center justify-center mb-3 glow-teal-sm">
+                  <svg class="w-10 h-10 text-[#c59538]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
+                      d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10">
+                    </path>
+                  </svg>
+                </div>
+                <h4 class="font-mono text-sm font-bold text-white tracking-wide">Enterprise Architecture</h4>
+                <p class="text-xs text-slate-400 font-mono mt-1">Spring Boot • React • AI-First</p>
+                <div
+                  class="mt-3 text-[11px] font-mono text-[#c59538] bg-[#c59538]/10 border border-[#c59538]/30 px-3 py-1 rounded-full">
+                  calisto.arch.deploy()
+                </div>
+              </div>
+
+              <!-- Terminal Status Bottom -->
+              <div
+                class="font-mono text-[11px] text-slate-500 flex justify-between items-center border-t border-[#404040]/60 pt-2.5">
+                <span class="flex items-center gap-1.5 text-slate-300">
+                  <span class="w-2 h-2 rounded-full bg-[#ba460d] inline-block animate-pulse"></span>
+                  Disponível para projetos de impacto
+                </span>
+                <span class="text-[#c59538] font-mono">CEO &amp; Founder</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- END: HeroSection -->
+
+    <!-- BEGIN: AboutSection -->
+    <section class="py-20 border-t border-[#404040]/50 relative" data-purpose="about-me" id="sobre">
+      <div class="max-w-6xl mx-auto px-6">
+        <!-- Section Indicator -->
+        <div class="flex items-center gap-2 mb-10 text-[#c59538] font-mono text-sm font-bold uppercase tracking-wider">
+          <span class="text-lg text-[#ba460d]">▣</span>
+          <h2>SOBRE MIM</h2>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <!-- Profile Column -->
+          <div class="lg:col-span-4 flex flex-col items-center text-center">
+            <!-- Profile Frame with palette glow ring -->
+            <div
+              class="relative w-44 h-44 sm:w-52 sm:h-52 rounded-2xl p-1.5 bg-gradient-to-tr from-[#185b63] via-[#c59538]/50 to-[#ba460d] glow-teal-sm mb-5">
+              <div
+                class="w-full h-full rounded-2xl overflow-hidden bg-[#0e1216] flex flex-col items-center justify-center border border-[#404040] p-4">
+                <div
+                  class="w-16 h-16 rounded-xl bg-[#185b63]/20 border border-[#185b63]/40 flex items-center justify-center text-[#c59538] mb-2">
+                  <span class="font-mono font-extrabold text-2xl">FC</span>
+                </div>
+                <span class="text-xs font-mono text-[#c59538] font-semibold uppercase tracking-wider">Engenharia da
+                  Computação</span>
+                <span class="text-[11px] font-mono text-slate-400 mt-1.5 flex items-center gap-1.5">
+                  <svg class="w-3.5 h-3.5 text-[#ba460d]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10" stroke-width="1.8"></circle>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
+                      d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z">
+                    </path>
+                  </svg>
+                  Atleta de Alto Nível
+                </span>
+              </div>
+            </div>
+
+            <h3 class="text-xl font-bold text-white font-sans">Fernando Henrique Braga Calisto</h3>
+            <p class="text-xs font-mono text-[#185b63] font-semibold mt-1">Desenvolvedor Full-Stack e Arquiteto de
+              Software</p>
+
+            <!-- Social Links Icons -->
+            <div class="flex items-center gap-3 mt-5">
+              <!-- Email -->
+              <a aria-label="Enviar Email"
+                class="w-10 h-10 rounded-lg bg-[#181e24] border border-[#404040] hover:border-[#ba460d] hover:text-[#ba460d] text-slate-400 flex items-center justify-center transition-all duration-200"
+                href="mailto:fernandocalisto.dev@gmail.com">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                    stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path>
+                </svg>
+              </a>
+
+              <!-- GitHub -->
+              <a aria-label="GitHub Profile"
+                class="w-10 h-10 rounded-lg bg-[#181e24] border border-[#404040] hover:border-[#185b63] hover:text-[#185b63] text-slate-400 flex items-center justify-center transition-all duration-200"
+                href="https://github.com/fernandocalisto" rel="noopener noreferrer" target="_blank">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path clip-rule="evenodd"
+                    d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                    fill-rule="evenodd"></path>
+                </svg>
+              </a>
+
+              <!-- LinkedIn -->
+              <a aria-label="LinkedIn Profile"
+                class="w-10 h-10 rounded-lg bg-[#181e24] border border-[#404040] hover:border-[#185b63] hover:text-[#185b63] text-slate-400 flex items-center justify-center transition-all duration-200"
+                href="https://www.linkedin.com/in/fernando-henrique-braga-calisto-34a703350/" rel="noopener noreferrer"
+                target="_blank">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 8.76a1.64 1.64 0 1 0 0-3.28 1.64 1.64 0 0 0 0 3.28m1.39 9.74v-8.37H5.07v8.37h2.78z">
+                  </path>
+                </svg>
+              </a>
+
+              <!-- Phone / WhatsApp Direct -->
+              <a aria-label="WhatsApp"
+                class="w-10 h-10 rounded-lg bg-[#181e24] border border-[#404040] hover:border-[#ba460d] hover:text-[#ba460d] text-slate-400 flex items-center justify-center transition-all duration-200"
+                href="tel:+5518991554376">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
+                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
+                  </path>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Description Text Column -->
+          <div class="lg:col-span-8 space-y-5">
+            <h3 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+              Engenharia, Liderança e Visão AI-First
+            </h3>
+
+            <!-- User's Official Bio -->
+            <p
+              class="text-slate-300 text-base leading-relaxed bg-[#181e24]/70 border border-[#404040]/70 p-6 rounded-xl">
+              Estudante de Engenharia da Computação focado em criar arquiteturas de software escaláveis e interfaces
+              modernas. Possuo uma forte mentalidade AI-First, com experiência na integração de modelos de Inteligência
+              Artificial e automação de processos complexos. Sou fundador da startup TALOS e atuo como CEO da empresa
+              júnior DRAKON Code, liderando o desenvolvimento de soluções tecnológicas de ponta a ponta. Minha
+              trajetória também conta com vivência internacional como atleta de alto nível, o que consolidou minha
+              disciplina, resiliência e foco na entrega de resultados de alto impacto.
+            </p>
+
+            <!-- Highlights -->
+            <div class="pt-2 grid grid-cols-1 sm:grid-cols-3 gap-3 font-mono text-xs text-slate-300">
+              <div
+                class="bg-[#181e24] p-4 rounded-xl border border-[#404040] hover:border-[#ba460d]/50 transition-colors">
+                <span class="text-[#ba460d] flex items-center gap-2 text-lg font-bold mb-1">
+                  <img src="assets/talos-logo.jpg" alt="Logo TALOS"
+                    class="w-5 h-5 rounded object-cover border border-[#ba460d]/50 shadow-sm" width="20" height="20"
+                    loading="lazy" />
+                  Startup TALOS
+                </span>
+                Fundador &amp; Tech Lead Full-Stack
+              </div>
+              <div
+                class="bg-[#181e24] p-4 rounded-xl border border-[#404040] hover:border-[#c0261c]/50 transition-colors">
+                <span class="text-[#c0261c] flex items-center gap-2 text-lg font-bold mb-1">
+                  <img src="assets/drakon-logo.png" alt="Logo DRAKON Code"
+                    class="w-5 h-5 rounded object-cover border border-[#c0261c]/50 shadow-sm" width="20" height="20"
+                    loading="lazy" />
+                  DRAKON Code
+                </span>
+                CEO &amp; Arquiteto de Software
+              </div>
+              <div
+                class="bg-[#181e24] p-4 rounded-xl border border-[#404040] hover:border-[#c59538]/50 transition-colors">
+                <span class="text-[#c59538] flex items-start gap-2 text-lg font-bold mb-1">
+                  <img src="assets/ai-logo.png" alt="Logo AI-First"
+                    class="w-7 h-7 mt-0.5 rounded-md flex-shrink-0 object-cover border border-[#c59538]/50 shadow-sm"
+                    loading="lazy" />
+                  <span class="leading-tight">AI-First &amp; Resiliência</span>
+                </span>
+                Integração de IA &amp; Automação
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- END: AboutSection -->
+
+    <!-- BEGIN: TimelineSection -->
+    <section
+      class="py-20 border-t border-[#404040]/50 relative overflow-hidden bg-gradient-to-b from-[#12161a] to-[#181e24]"
+      data-purpose="timeline" id="timeline">
+
+      <!-- Swiper CSS (CDN) -->
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+      <div class="max-w-6xl mx-auto px-6 relative z-10">
+        <!-- Section Indicator -->
+        <div class="flex items-center gap-2 mb-10 text-[#c59538] font-mono text-sm font-bold uppercase tracking-wider">
+          <span class="text-lg text-[#ba460d]">▣</span>
+          <h2>MINHA TIMELINE</h2>
+        </div>
+      </div>
+
+      <!-- Carousel Container -->
+      <div class="relative w-full pb-16 z-10">
+        <!-- Swiper Container -->
+        <div class="swiper timeline-swiper w-full">
+          <div class="swiper-wrapper py-10" id="timeline-track">
+            <!-- Cards injected via JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Timeline Line -->
+      <div class="max-w-4xl mx-auto mt-2 px-10 relative z-10 pb-10">
+        <div class="h-0.5 w-full bg-[#404040] relative flex justify-between items-center" id="timeline-marks-container">
+          <div class="absolute h-0.5 bg-[#c59538] left-0 top-0 transition-all duration-500 ease-out"
+            id="timeline-progress" style="width: 0%;"></div>
+          <!-- Marks added by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Swiper JS (CDN) & Timeline Script -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        // Fácil Manutenção: Array simples com os dados dos cartões.
+        const timelineData = [
+          { year: "2022", title: "De Curioso a Programador", desc: "Aos 16 anos, transformei uma infância inteira de curiosidade por computadores nas minhas primeiras linhas de código." },
+          { year: "2023", title: "Vida Dupla: Atleta e Dev", desc: "Conciliei a rotina exigente de atleta de alto rendimento com os estudos diários em desenvolvimento de software." },
+          { year: "2024", title: "A Base Acadêmica", desc: "O início da Engenharia da Computação, estruturando minha base teórica para projetar e desenvolver sistemas robustos." },
+          { year: "2025", title: "O Mercado: Primeiros Clientes e Scripts Python", desc: "Meu primeiro estágio e o início no mundo freelancer, entregando landing pages reais e scripts de automação." },
+          { year: "2026", title: "Empreendedorismo e Projetos Pessoais", desc: "Atuação na startup TALOS e na EJ DRAKON Code, além de projetos abrangendo fullstack, APIs, automações e IA." }
+        ];
+
+        const track = document.getElementById('timeline-track');
+        const marksContainer = document.getElementById('timeline-marks-container');
+
+        if (!track || !marksContainer) return;
+
+        // Renderizar Cartões (Repare no uso da classe 'swiper-slide')
+        track.innerHTML = timelineData.map((item, index) => `
+          <div class="swiper-slide w-[280px] sm:w-[320px] cursor-pointer">
+             <!-- slide-content armazena os estilos de foco que serão ativados via CSS -->
+             <div class="slide-content bg-[#c59538] p-[2px] shadow-[0_0_20px_rgba(197,149,56,0.15)] relative opacity-40 grayscale-[0.8] scale-90 transition-all duration-500 ease-out">
+                <div class="bg-white overflow-hidden h-[380px] sm:h-[420px] flex flex-col relative">
+                   <!-- Image Placeholder -->
+                   <div class="h-48 sm:h-56 bg-slate-200 w-full relative">
+                      <div class="w-full h-full flex items-center justify-center text-slate-400">
+                        <svg class="w-10 h-10 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                      </div>
+                   </div>
+                   
+                   <!-- Giant Year -->
+                   <div class="absolute top-[140px] sm:top-[160px] left-0 w-full text-center">
+                     <span class="text-6xl sm:text-7xl font-extrabold text-white tracking-tighter drop-shadow-xl" style="text-shadow: 0 4px 15px rgba(0,0,0,0.5);">${item.year}</span>
+                   </div>
+                   
+                   <!-- Content -->
+                   <div class="flex-1 bg-white p-6 pt-10 sm:pt-14 text-center flex flex-col items-center">
+                      <h4 class="text-black font-bold text-sm mb-2 uppercase tracking-tight">${item.title}</h4>
+                      <p class="text-gray-600 text-[11px] sm:text-xs leading-relaxed">${item.desc}</p>
+                   </div>
+                </div>
+             </div>
+          </div>
+        `).join('');
+
+        // Inserir os marks após a barra de progresso
+        const marksHTML = timelineData.map((item, index) => `
+          <div class="relative z-10 flex flex-col items-center cursor-pointer group" id="timeline-mark-${index}">
+            <span class="absolute -top-7 text-xs font-mono text-slate-500 group-hover:text-[#c59538] transition-colors mark-year whitespace-nowrap">${item.year}</span>
+            <div class="w-4 h-4 rounded-full bg-[#12161a] border-2 border-[#404040] transition-colors mark-dot flex items-center justify-center"></div>
+          </div>
+        `).join('');
+        marksContainer.innerHTML += marksHTML;
+
+        // Adicionando um estilo CSS dinâmico para lidar com o foco do Swiper sem tocar no DOM via JS pesadamente
+        const style = document.createElement('style');
+        style.innerHTML = `
+          .swiper-slide { 
+            z-index: 1; 
+            width: 280px !important;
+          }
+          @media (min-width: 640px) {
+            .swiper-slide { width: 320px !important; }
+          }
+          .swiper-slide-active { z-index: 10; }
+          .swiper-slide-active .slide-content {
+            opacity: 1 !important;
+            filter: grayscale(0) !important;
+            transform: scale(1) !important;
+          }
+        `;
+        document.head.appendChild(style);
+
+        // Função para atualizar a linha do tempo e marks
+        const updateMarks = (activeIndex) => {
+          const marks = document.querySelectorAll('.mark-dot');
+          const years = document.querySelectorAll('.mark-year');
+          const progressBar = document.getElementById('timeline-progress');
+
+          marks.forEach((m, i) => {
+            if (i === activeIndex) {
+              m.classList.remove('bg-[#12161a]', 'border-[#404040]');
+              m.classList.add('bg-[#c59538]', 'border-[#c59538]', 'scale-125');
+              m.innerHTML = '<div class="w-1.5 h-1.5 bg-[#12161a] rounded-full"></div>';
+            } else {
+              m.classList.add('bg-[#12161a]', 'border-[#404040]');
+              m.classList.remove('bg-[#c59538]', 'border-[#c59538]', 'scale-125');
+              m.innerHTML = '';
+            }
+          });
+
+          years.forEach((y, i) => {
+            if (i === activeIndex) {
+              y.classList.add('text-[#c59538]', 'font-bold');
+              y.classList.remove('text-slate-500');
+            } else {
+              y.classList.remove('text-[#c59538]', 'font-bold');
+              y.classList.add('text-slate-500');
+            }
+          });
+
+          // Atualizar a barra de progresso
+          const progress = (activeIndex / (timelineData.length - 1)) * 100;
+          progressBar.style.width = progress + '%';
+        };
+
+        // Inicializar o Swiper.js - A melhor biblioteca de carrossel do mundo
+        const swiper = new Swiper('.timeline-swiper', {
+          slidesPerView: 'auto',
+          centeredSlides: true,
+          spaceBetween: 16, // gap equivalente ao que tínhamos
+          speed: 600,
+          grabCursor: true,
+          keyboard: {
+            enabled: true,
+          },
+          mousewheel: {
+            forceToAxis: true,
+            releaseOnEdges: true, // Libera o scroll da página no começo/fim
+            sensitivity: 1,
+          },
+          on: {
+            init: function () {
+              updateMarks(this.activeIndex);
+            },
+            slideChange: function () {
+              updateMarks(this.activeIndex);
+            }
+          }
+        });
+
+        // Permitir clique nos cartões para focar neles
+        document.querySelectorAll('.swiper-slide').forEach((card, index) => {
+          card.addEventListener('click', () => {
+            swiper.slideTo(index);
+          });
+        });
+
+        // Permitir clique nos marks
+        timelineData.forEach((_, index) => {
+          document.getElementById(`timeline-mark-${index}`).addEventListener('click', () => {
+            swiper.slideTo(index);
+          });
+        });
+
+      });
+    </script>
+    <!-- END: TimelineSection -->
+
+    <!-- BEGIN: SkillsSection -->
+    <section class="py-20 bg-[#0e1216]/90 border-t border-[#404040]/50" data-purpose="tech-skills" id="skills">
+      <div class="max-w-6xl mx-auto px-6">
+        <!-- Section Indicator -->
+        <div class="flex items-center justify-between mb-10">
+          <div class="flex items-center gap-2 text-[#c59538] font-mono text-sm font-bold uppercase tracking-wider">
+            <span class="text-lg text-[#ba460d]">▣</span>
+            <h2>SKILLS &amp; TECNOLOGIAS</h2>
+          </div>
+          <span class="text-xs font-mono text-slate-400 hidden sm:inline">STACK PRINCIPAL &amp; IA</span>
+        </div>
+
+        <!-- Skills Grid: Java Spring Boot, React, Node.js, TypeScript, PostgreSQL, Python, IA & Automação -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-4">
+
+          <!-- Skill 1: Java Spring Boot -->
+          <div
+            class="bg-[#181e24] hover:bg-[#202830] border border-[#404040] hover:border-[#185b63] rounded-xl p-5 flex flex-col items-center justify-center text-center transition-all duration-300 hover:-translate-y-1 group">
+            <span class="text-[11px] font-mono text-slate-400 mb-2 group-hover:text-[#185b63] transition-colors">SPRING
+              BOOT</span>
+            <div
+              class="w-12 h-12 flex items-center justify-center text-[#185b63] my-1 group-hover:scale-110 transition-transform">
+              <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M21.707 10.293l-8-8a.999.999 0 0 0-1.414 0l-8 8a.999.999 0 0 0 0 1.414l8 8a.997.997 0 0 0 1.414 0l8-8a.999.999 0 0 0 0-1.414zM12 20.586l-7.293-7.293L12 6l7.293 7.293L12 20.586zM9.5 13.5a2.5 2.5 0 1 1 5 0 2.5 2.5 0 0 1-5 0z" />
+              </svg>
+            </div>
+            <span class="text-xs font-semibold text-slate-200 mt-1">Java Spring</span>
+            <div class="w-8 h-0.5 bg-[#185b63] mt-2 rounded-full"></div>
+          </div>
+
+          <!-- Skill 2: React -->
+          <div
+            class="bg-[#181e24] hover:bg-[#202830] border border-[#404040] hover:border-[#185b63] rounded-xl p-5 flex flex-col items-center justify-center text-center transition-all duration-300 hover:-translate-y-1 group">
+            <span
+              class="text-[11px] font-mono text-slate-400 mb-2 group-hover:text-[#185b63] transition-colors">REACT</span>
+            <div class="w-12 h-12 flex items-center justify-center text-[#185b63] my-1">
+              <svg class="w-10 h-10 animate-[spin_10s_linear_infinite]" fill="none" stroke="currentColor"
+                viewBox="0 0 24 24">
+                <ellipse cx="12" cy="12" rx="10" ry="4" stroke-width="1.5" />
+                <ellipse cx="12" cy="12" rx="10" ry="4" stroke-width="1.5" transform="rotate(60 12 12)" />
+                <ellipse cx="12" cy="12" rx="10" ry="4" stroke-width="1.5" transform="rotate(120 12 12)" />
+                <circle cx="12" cy="12" fill="currentColor" r="2" />
+              </svg>
+            </div>
+            <span class="text-xs font-semibold text-slate-200 mt-1">React.js</span>
+            <div class="w-8 h-0.5 bg-[#185b63] mt-2 rounded-full"></div>
+          </div>
+
+          <!-- Skill 3: Node.js -->
+          <div
+            class="bg-[#181e24] hover:bg-[#202830] border border-[#404040] hover:border-[#c59538] rounded-xl p-5 flex flex-col items-center justify-center text-center transition-all duration-300 hover:-translate-y-1 group">
+            <span
+              class="text-[11px] font-mono text-slate-400 mb-2 group-hover:text-[#c59538] transition-colors">NODE.JS</span>
+            <div
+              class="w-12 h-12 flex items-center justify-center text-[#c59538] font-mono font-bold text-lg my-1 group-hover:scale-110 transition-transform">
+              <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M12 2l10 5.75v11.5L12 25 2 19.25V7.75L12 2zm0 2.3L4 8.9v9.2l8 4.6 8-4.6V8.9l-8-4.6zM11 9h2v6h-2V9z" />
+              </svg>
+            </div>
+            <span class="text-xs font-semibold text-slate-200 mt-1">Node.js</span>
+            <div class="w-8 h-0.5 bg-[#c59538] mt-2 rounded-full"></div>
+          </div>
+
+          <!-- Skill 4: TypeScript -->
+          <div
+            class="bg-[#181e24] hover:bg-[#202830] border border-[#404040] hover:border-[#185b63] rounded-xl p-5 flex flex-col items-center justify-center text-center transition-all duration-300 hover:-translate-y-1 group">
+            <span
+              class="text-[11px] font-mono text-slate-400 mb-2 group-hover:text-[#185b63] transition-colors">TYPESCRIPT</span>
+            <div
+              class="w-12 h-12 flex items-center justify-center text-[#185b63] font-extrabold text-2xl font-mono my-1 bg-[#185b63]/10 rounded-lg border border-[#185b63]/30 group-hover:scale-110 transition-transform">
+              TS
+            </div>
+            <span class="text-xs font-semibold text-slate-200 mt-1">TypeScript</span>
+            <div class="w-8 h-0.5 bg-[#185b63] mt-2 rounded-full"></div>
+          </div>
+
+          <!-- Skill 5: PostgreSQL -->
+          <div
+            class="bg-[#181e24] hover:bg-[#202830] border border-[#404040] hover:border-[#185b63] rounded-xl p-5 flex flex-col items-center justify-center text-center transition-all duration-300 hover:-translate-y-1 group">
+            <span
+              class="text-[11px] font-mono text-slate-400 mb-2 group-hover:text-[#185b63] transition-colors">POSTGRESQL</span>
+            <div
+              class="w-12 h-12 flex items-center justify-center text-[#185b63] my-1 group-hover:scale-110 transition-transform">
+              <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
+                  d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4">
+                </path>
+              </svg>
+            </div>
+            <span class="text-xs font-semibold text-slate-200 mt-1">PostgreSQL</span>
+            <div class="w-8 h-0.5 bg-[#185b63] mt-2 rounded-full"></div>
+          </div>
+
+          <!-- Skill 6: Python -->
+          <div
+            class="bg-[#181e24] hover:bg-[#202830] border border-[#404040] hover:border-[#c59538] rounded-xl p-5 flex flex-col items-center justify-center text-center transition-all duration-300 hover:-translate-y-1 group">
+            <span
+              class="text-[11px] font-mono text-slate-400 mb-2 group-hover:text-[#c59538] transition-colors">PYTHON</span>
+            <div
+              class="w-12 h-12 flex items-center justify-center text-[#c59538] my-1 group-hover:scale-110 transition-transform">
+              <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M12 2a5 5 0 0 0-5 5v2h5a1 1 0 0 1 1 1v1h4a3 3 0 0 0 3-3V7a5 5 0 0 0-5-5h-3zm-1 2.5a.75.75 0 1 1 0 1.5.75.75 0 0 1 0-1.5zM7 13H4a3 3 0 0 0-3 3v1a5 5 0 0 0 5 5h3a5 5 0 0 0 5-5v-2h-5a1 1 0 0 1-1-1v-1zm6 6a.75.75 0 1 1 0 1.5.75.75 0 0 1 0-1.5z" />
+              </svg>
+            </div>
+            <span class="text-xs font-semibold text-slate-200 mt-1">Python</span>
+            <div class="w-8 h-0.5 bg-[#c59538] mt-2 rounded-full"></div>
+          </div>
+
+          <!-- Skill 7: IA & Automação (n8n & LLMs) -->
+          <div
+            class="bg-[#181e24] hover:bg-[#202830] border border-[#ba460d]/60 hover:border-[#ba460d] rounded-xl p-5 flex flex-col items-center justify-center text-center transition-all duration-300 hover:-translate-y-1 group col-span-2 sm:col-span-1 shadow-[0_0_12px_rgba(186,70,13,0.15)]">
+            <span class="text-[11px] font-mono text-[#ba460d] mb-2 font-bold">AI-FIRST</span>
+            <div
+              class="w-12 h-12 flex items-center justify-center text-[#c59538] my-1 group-hover:scale-110 transition-transform">
+              <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
+                  d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                </path>
+                <circle cx="9" cy="9" r="1" fill="currentColor" />
+                <circle cx="15" cy="9" r="1" fill="currentColor" />
+              </svg>
+            </div>
+            <span class="text-xs font-semibold text-white mt-1">n8n &amp; LLMs</span>
+            <div class="w-8 h-0.5 bg-[#ba460d] mt-2 rounded-full"></div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+    <!-- END: SkillsSection -->
+
+    <!-- BEGIN: ProjectsSection -->
+    <section class="py-20 border-t border-[#404040]/50" data-purpose="laboratory-projects" id="laboratorio">
+      <div class="max-w-6xl mx-auto px-6">
+        <!-- Section Indicator -->
+        <div class="flex items-center justify-between mb-10">
+          <div class="flex items-center gap-2 text-[#c59538] font-mono text-sm font-bold uppercase tracking-wider">
+            <span class="text-lg text-[#ba460d]">▣</span>
+            <h2>LABORATÓRIO &amp; PROJETOS</h2>
+          </div>
+          <span class="text-xs font-mono text-slate-400">STARTUP, LIDERANÇA &amp; IA</span>
+        </div>
+
+        <!-- Projects Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <!-- Card 1: Startup TALOS -->
+          <article
+            class="bg-[#181e24] rounded-xl border border-[#404040] hover:border-[#ba460d]/60 transition-all duration-300 flex flex-col overflow-hidden group shadow-lg">
+            <!-- Project Thumbnail Preview -->
+            <div
+              class="h-48 bg-gradient-to-br from-[#12161a] to-[#251711] relative overflow-hidden border-b border-[#404040] p-4 flex flex-col justify-between">
+              <div class="flex items-center justify-between z-10">
+                <span
+                  class="px-2.5 py-0.5 text-[10px] font-mono bg-[#ba460d]/20 text-[#ba460d] border border-[#ba460d]/40 rounded-full font-semibold">Startup
+                  Founder</span>
+                <span class="text-xs font-mono text-slate-400">Soluções B2B</span>
+              </div>
+
+              <!-- Logo TALOS & Nome da Empresa -->
+              <div class="text-center py-2 z-10 flex flex-col items-center justify-center">
+                <!-- Logo Oficial da Startup TALOS -->
+                <div
+                  class="group/logo relative flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-xl overflow-hidden border border-[#ba460d]/50 bg-[#042743] shadow-md group-hover:border-[#ba460d] group-hover:shadow-[0_0_16px_rgba(186,70,13,0.4)] transition-all duration-300 mb-2"
+                  title="Logo Oficial TALOS">
+                  <img src="assets/talos-logo.jpg" alt="Logo Oficial TALOS — Automação Empresarial & IA"
+                    class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
+                    width="64" height="64" loading="lazy" />
+                </div>
+                <span
+                  class="text-2xl sm:text-3xl font-mono font-extrabold text-white group-hover:text-[#ba460d] transition-colors tracking-wider inline-block">
+                  TALOS
+                </span>
+                <p class="text-xs text-slate-400 font-mono mt-0.5">Automação Empresarial &amp; IA Sob Medida</p>
+              </div>
+
+              <div class="h-1 w-full bg-[#404040]/50 rounded-full overflow-hidden">
+                <div class="h-full bg-[#ba460d] w-full"></div>
+              </div>
+            </div>
+
+            <!-- Card Body -->
+            <div class="p-6 flex-1 flex flex-col justify-between space-y-5">
+              <div>
+                <h3 class="text-lg font-bold text-white mb-2 group-hover:text-[#ba460d] transition-colors">
+                  TALOS — Automação Empresarial e IA
+                </h3>
+                <p class="text-slate-300 text-sm leading-relaxed">
+                  Desenvolvimento de soluções tecnológicas altamente customizadas para empresas que buscam
+                  escalabilidade e eficiência. Atuo na automação de processos corporativos complexos e na implementação
+                  estratégica de Inteligência Artificial, desenhando sistemas que reduzem custos operacionais, eliminam
+                  gargalos e se adaptam com precisão cirúrgica ao modelo de negócio de cada cliente.
+                </p>
+              </div>
+              <div>
+                <!-- Tech Tags -->
+                <div class="flex flex-wrap gap-1.5 mb-5">
+                  <span
+                    class="text-[11px] font-mono px-2 py-0.5 rounded bg-[#12161a] text-slate-300 border border-[#404040]">SOLUÇÕES
+                    B2B</span>
+                  <span
+                    class="text-[11px] font-mono px-2 py-0.5 rounded bg-[#12161a] text-slate-300 border border-[#404040]">AUTOMAÇÃO
+                    CORP</span>
+                  <span
+                    class="text-[11px] font-mono px-2 py-0.5 rounded bg-[#12161a] text-slate-300 border border-[#404040]">IA
+                    ESTRATÉGICA</span>
+                  <span
+                    class="text-[11px] font-mono px-2 py-0.5 rounded bg-[#ba460d]/15 text-[#ba460d] border border-[#ba460d]/40 font-semibold">CUSTOM
+                    SOFTWARE</span>
+                </div>
+                <!-- Access Button -->
+                <a class="w-full py-2.5 rounded bg-[#12161a] hover:bg-[#ba460d] hover:text-white text-slate-300 font-mono text-xs font-bold tracking-wider text-center block uppercase border border-[#404040] hover:border-[#ba460d] transition-all duration-200"
+                  href="#contato">
+                  Conhecer a TALOS
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 2: DRAKON Code -->
+          <article
+            class="bg-[#181e24] rounded-xl border border-[#404040] hover:border-[#c0261c]/60 transition-all duration-300 flex flex-col overflow-hidden group shadow-lg">
+            <!-- Project Thumbnail Preview -->
+            <div
+              class="h-48 bg-gradient-to-br from-[#12161a] to-[#261313] relative overflow-hidden border-b border-[#404040] p-4 flex flex-col justify-between">
+              <div class="flex items-center justify-between z-10">
+                <span
+                  class="px-2.5 py-0.5 text-[10px] font-mono bg-[#c0261c]/20 text-[#c0261c] border border-[#c0261c]/40 rounded-full font-semibold">Empresa
+                  Júnior</span>
+                <span class="text-xs font-mono text-slate-400">CEO &amp; Liderança</span>
+              </div>
+
+              <!-- Logo DRAKON Code & Nome da Empresa -->
+              <div class="text-center py-2 z-10 flex flex-col items-center justify-center">
+                <!-- Logo Oficial da DRAKON Code -->
+                <div
+                  class="group/logo relative flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-xl overflow-hidden border border-[#c0261c]/50 bg-[#c0261c]/10 shadow-md group-hover:border-[#c0261c] group-hover:shadow-[0_0_16px_rgba(192,38,28,0.4)] transition-all duration-300 mb-2"
+                  title="Logo Oficial DRAKON Code">
+                  <img src="assets/drakon-logo.png" alt="Logo Oficial DRAKON Code — Empresa Júnior"
+                    class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
+                    width="64" height="64" loading="lazy" />
+                </div>
+                <span
+                  class="text-2xl sm:text-3xl font-mono font-extrabold text-white group-hover:text-[#c0261c] transition-colors tracking-wider inline-block">
+                  DRAKON Code
+                </span>
+                <p class="text-xs text-slate-400 font-mono mt-0.5">Sistemas Sob Medida para Negócios Locais</p>
+              </div>
+
+              <div class="h-1 w-full bg-[#404040]/50 rounded-full overflow-hidden">
+                <div class="h-full bg-[#c0261c] w-full"></div>
+              </div>
+            </div>
+
+            <!-- Card Body -->
+            <div class="p-6 flex-1 flex flex-col justify-between space-y-5">
+              <div>
+                <h3 class="text-lg font-bold text-white mb-2 group-hover:text-[#c0261c] transition-colors">
+                  DRAKON Code — Empresa Júnior de Tecnologia
+                </h3>
+                <p class="text-slate-300 text-sm leading-relaxed">
+                  Iniciativa de alto impacto nascida no meio universitário e liderada por mim como CEO. A DRAKON Code
+                  tem a missão de democratizar o acesso à engenharia de software de ponta, desenvolvendo sistemas sob
+                  medida que impulsionam o crescimento e a transformação digital de negócios locais, gerando valor real
+                  e duradouro na nossa região.
+                </p>
+              </div>
+              <div>
+                <!-- Tech Tags -->
+                <div class="flex flex-wrap gap-1.5 mb-5">
+                  <span
+                    class="text-[11px] font-mono px-2 py-0.5 rounded bg-[#12161a] text-slate-300 border border-[#404040]">EMPRESA
+                    JÚNIOR</span>
+                  <span
+                    class="text-[11px] font-mono px-2 py-0.5 rounded bg-[#12161a] text-slate-300 border border-[#404040]">SISTEMAS
+                    SOB MEDIDA</span>
+                  <span
+                    class="text-[11px] font-mono px-2 py-0.5 rounded bg-[#12161a] text-slate-300 border border-[#404040]">LIDERANÇA
+                    TECH</span>
+                  <span
+                    class="text-[11px] font-mono px-2 py-0.5 rounded bg-[#c0261c]/15 text-[#c0261c] border border-[#c0261c]/40 font-semibold">IMPACTO
+                    REGIONAL</span>
+                </div>
+                <!-- Access Button -->
+                <a class="w-full py-2.5 rounded bg-[#12161a] hover:bg-[#c0261c] hover:text-white text-slate-300 font-mono text-xs font-bold tracking-wider text-center block uppercase border border-[#404040] hover:border-[#c0261c] transition-all duration-200"
+                  href="#contato">
+                  Conhecer a DRAKON Code
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 3: Ecossistemas de Automação e IA -->
+          <article
+            class="bg-[#181e24] rounded-xl border border-[#404040] hover:border-[#185b63]/70 transition-all duration-300 flex flex-col overflow-hidden group shadow-lg">
+            <!-- Project Thumbnail Preview -->
+            <div
+              class="h-48 bg-gradient-to-br from-[#12161a] to-[#122226] relative overflow-hidden border-b border-[#404040] p-4 flex flex-col justify-between">
+              <div class="flex items-center justify-between z-10">
+                <span
+                  class="px-2.5 py-0.5 text-[10px] font-mono bg-[#185b63]/25 text-[#c59538] border border-[#185b63]/50 rounded-full font-semibold">AI
+                  Architecture</span>
+                <span class="text-xs font-mono text-slate-400">Alta Produtividade</span>
+              </div>
+
+              <!-- Logo Placeholder & Nome do Projeto -->
+              <div class="text-center py-2 z-10 flex flex-col items-center justify-center">
+                <div
+                  class="group/logo relative flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-xl overflow-hidden border border-[#185b63]/50 bg-[#12161a] shadow-md group-hover:border-[#185b63] group-hover:shadow-[0_0_16px_rgba(24,91,99,0.4)] transition-all duration-300 mb-2"
+                  title="Logo Ecossistemas de IA">
+                  <img src="assets/ai-logo.png" alt="Logo Ecossistemas de IA"
+                    class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
+                    width="64" height="64" loading="lazy" />
+                </div>
+                <span
+                  class="text-2xl sm:text-3xl font-mono font-extrabold text-white group-hover:text-[#c59538] transition-colors tracking-wider inline-block">
+                  ECOSSISTEMAS DE IA
+                </span>
+                <p class="text-xs text-slate-400 font-mono mt-0.5">Orquestração de APIs, n8n &amp; Agentes</p>
+              </div>
+
+              <div class="h-1 w-full bg-[#404040]/50 rounded-full overflow-hidden">
+                <div class="h-full bg-[#185b63] w-full"></div>
+              </div>
+            </div>
+
+            <!-- Card Body -->
+            <div class="p-6 flex-1 flex flex-col justify-between space-y-5">
+              <div>
+                <h3 class="text-lg font-bold text-white mb-2 group-hover:text-[#c59538] transition-colors">
+                  Ecossistemas de Automação e IA
+                </h3>
+                <p class="text-slate-300 text-sm leading-relaxed">
+                  Engenharia e arquitetura aplicadas à resolução de desafios corporativos de alta complexidade. Construo
+                  pipelines autônomos e integrações robustas orquestrando APIs, scripts em Python, fluxos no n8n e
+                  agentes de IA (LLMs), transformando processos operacionais morosos em ecossistemas ágeis que
+                  multiplicam exponencialmente a produtividade.
+                </p>
+              </div>
+              <div>
+                <!-- Tech Tags -->
+                <div class="flex flex-wrap gap-1.5 mb-5">
+                  <span
+                    class="text-[11px] font-mono px-2 py-0.5 rounded bg-[#12161a] text-slate-300 border border-[#404040]">n8n
+                    ADVANCED</span>
+                  <span
+                    class="text-[11px] font-mono px-2 py-0.5 rounded bg-[#12161a] text-slate-300 border border-[#404040]">PYTHON
+                    SCRIPTS</span>
+                  <span
+                    class="text-[11px] font-mono px-2 py-0.5 rounded bg-[#12161a] text-slate-300 border border-[#404040]">AGENTES
+                    DE IA</span>
+                  <span
+                    class="text-[11px] font-mono px-2 py-0.5 rounded bg-[#185b63]/20 text-[#c59538] border border-[#185b63]/50 font-semibold">INTEGRAÇÃO
+                    DE APIS</span>
+                </div>
+                <!-- Access Button -->
+                <a class="w-full py-2.5 rounded bg-[#12161a] hover:bg-[#185b63] hover:text-white text-slate-300 font-mono text-xs font-bold tracking-wider text-center block uppercase border border-[#404040] hover:border-[#185b63] transition-all duration-200"
+                  href="#contato">
+                  Ver Arquitetura de IA
+                </a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+    <!-- END: ProjectsSection -->
+
+    <!-- BEGIN: ContactSection -->
+    <section class="py-20 bg-[#0e1216]/90 border-t border-[#404040]/50 relative" data-purpose="contact-me" id="contato">
+      <div class="max-w-6xl mx-auto px-6">
+        <!-- Section Indicator -->
+        <div class="flex items-center gap-2 mb-4 text-[#c59538] font-mono text-sm font-bold uppercase tracking-wider">
+          <span class="text-lg text-[#ba460d]">▣</span>
+          <h2>CONTATO</h2>
+        </div>
+        <p class="text-slate-300 text-base max-w-xl mb-12">
+          Fique à vontade para entrar em contato. Vamos conversar sobre arquitetura de software, inovação com IA,
+          oportunidades na TALOS ou soluções sob medida.
+        </p>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+          <!-- Contact Direct Channels -->
+          <div class="lg:col-span-6 space-y-5">
+
+            <!-- Phone / WhatsApp -->
+            <a class="flex items-center gap-4 p-4 rounded-xl bg-[#181e24] border border-[#404040] hover:border-[#ba460d]/70 transition-all duration-200 group"
+              href="tel:+5518991554376">
+              <div
+                class="w-11 h-11 rounded-lg bg-[#ba460d]/15 text-[#ba460d] flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
+                  </path>
+                </svg>
+              </div>
+              <div class="overflow-hidden">
+                <span class="text-xs font-mono text-slate-400 block">TELEFONE / WHATSAPP</span>
+                <span class="text-white font-mono text-sm tracking-wide group-hover:text-[#ba460d] transition-colors">
+                  (18) 99155-4376
+                </span>
+              </div>
+            </a>
+
+            <!-- Email Direct -->
+            <a class="flex items-center gap-4 p-4 rounded-xl bg-[#181e24] border border-[#404040] hover:border-[#c59538]/70 transition-all duration-200 group"
+              href="mailto:fernandocalisto.dev@gmail.com">
+              <div
+                class="w-11 h-11 rounded-lg bg-[#c59538]/15 text-[#c59538] flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207">
+                  </path>
+                </svg>
+              </div>
+              <div class="overflow-hidden">
+                <span class="text-xs font-mono text-slate-400 block">E-MAIL PRINCIPAL</span>
+                <span class="text-white font-mono text-sm tracking-wide group-hover:text-[#c59538] transition-colors">
+                  fernandocalisto.dev@gmail.com
+                </span>
+              </div>
+            </a>
+
+            <!-- GitHub Direct -->
+            <a class="flex items-center gap-4 p-4 rounded-xl bg-[#181e24] border border-[#404040] hover:border-[#185b63]/80 transition-all duration-200 group"
+              href="https://github.com/fernandocalisto" rel="noopener noreferrer" target="_blank">
+              <div
+                class="w-11 h-11 rounded-lg bg-[#185b63]/20 text-[#185b63] flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path clip-rule="evenodd"
+                    d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                    fill-rule="evenodd"></path>
+                </svg>
+              </div>
+              <div class="overflow-hidden">
+                <span class="text-xs font-mono text-slate-400 block">GITHUB</span>
+                <span class="text-white font-mono text-sm tracking-wide group-hover:text-[#185b63] transition-colors">
+                  github.com/fernandocalisto
+                </span>
+              </div>
+            </a>
+
+            <!-- LinkedIn Direct -->
+            <a class="flex items-center gap-4 p-4 rounded-xl bg-[#181e24] border border-[#404040] hover:border-[#185b63]/80 transition-all duration-200 group"
+              href="https://www.linkedin.com/in/fernando-henrique-braga-calisto-34a703350/" rel="noopener noreferrer"
+              target="_blank">
+              <div
+                class="w-11 h-11 rounded-lg bg-[#185b63]/20 text-[#185b63] flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 8.76a1.64 1.64 0 1 0 0-3.28 1.64 1.64 0 0 0 0 3.28m1.39 9.74v-8.37H5.07v8.37h2.78z">
+                  </path>
+                </svg>
+              </div>
+              <div class="overflow-hidden">
+                <span class="text-xs font-mono text-slate-400 block">LINKEDIN</span>
+                <span class="text-white font-mono text-sm tracking-wide group-hover:text-[#185b63] transition-colors">
+                  linkedin.com/in/fernando-henrique-braga-calisto-34a703350
+                </span>
+              </div>
+            </a>
+          </div>
+
+          <!-- Quick Interactive Form -->
+          <div class="lg:col-span-6 bg-[#181e24] border border-[#404040] p-6 sm:p-8 rounded-2xl shadow-xl">
+            <form class="space-y-4" id="contact-form"
+              onsubmit="event.preventDefault(); alert('Mensagem enviada com sucesso! Em breve entrarei em contato.'); this.reset();">
+              <div>
+                <label class="block text-xs font-mono uppercase text-slate-400 mb-1.5" for="name">Seu Nome</label>
+                <input
+                  class="w-full bg-[#12161a] border border-[#404040] rounded-lg px-4 py-3 text-slate-200 text-sm focus:border-[#ba460d] focus:ring-1 focus:ring-[#ba460d] outline-none transition-colors"
+                  id="name" placeholder="Como devo lhe chamar?" required="" type="text" />
+              </div>
+              <div>
+                <label class="block text-xs font-mono uppercase text-slate-400 mb-1.5" for="email">Seu E-mail</label>
+                <input
+                  class="w-full bg-[#12161a] border border-[#404040] rounded-lg px-4 py-3 text-slate-200 text-sm focus:border-[#ba460d] focus:ring-1 focus:ring-[#ba460d] outline-none transition-colors"
+                  id="email" placeholder="exemplo@dominio.com" required="" type="email" />
+              </div>
+              <div>
+                <label class="block text-xs font-mono uppercase text-slate-400 mb-1.5" for="message">Mensagem ou Ideia
+                  de Projeto</label>
+                <textarea
+                  class="w-full bg-[#12161a] border border-[#404040] rounded-lg px-4 py-3 text-slate-200 text-sm focus:border-[#ba460d] focus:ring-1 focus:ring-[#ba460d] outline-none transition-colors resize-none"
+                  id="message" placeholder="Conte-me um pouco sobre sua ideia, proposta ou oportunidade..." required=""
+                  rows="4"></textarea>
+              </div>
+              <button
+                class="w-full py-3.5 bg-[#ba460d] text-white font-mono text-sm font-bold tracking-wider uppercase rounded-lg hover:bg-[#c0261c] transition-all duration-200 shadow-md glow-amber-sm"
+                type="submit">
+                Enviar Mensagem
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- END: ContactSection -->
+  </main>
+
+  <!-- BEGIN: Footer -->
+  <footer class="border-t border-[#404040]/50 bg-[#0c1014] py-8 text-center text-xs font-mono text-slate-500">
+    <div class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <span class="text-[#185b63]">&lt;/&gt;</span>
+        <span>© 2026 Fernando Henrique Braga Calisto — Todos os direitos reservados.</span>
+      </div>
+      <div class="text-slate-400">
+        Desenvolvido com mentalidade <span class="text-[#c59538] font-semibold">AI-First</span> &amp; Alta Performance
+      </div>
+    </div>
+  </footer>
+  <!-- END: Footer -->
+
+</body>
+
+</html>

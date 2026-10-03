@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <rect width="64" height="64" rx="16" fill="#101418"/>
+  <rect x="2" y="2" width="60" height="60" rx="14" stroke="#2c3540" stroke-width="2"/>
+  <text x="32" y="42" font-family="'JetBrains Mono', monospace" font-size="28" font-weight="800" text-anchor="middle" fill="#c59538">
+    FC
+  </text>
+  <circle cx="50" cy="18" r="4" fill="#ba460d" />
+</svg>

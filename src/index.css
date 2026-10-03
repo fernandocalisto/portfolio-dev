@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background-color: #101418;
+    background-image:
+      radial-gradient(circle at 18% 20%, rgba(24, 91, 99, 0.16) 0%, transparent 45%),
+      radial-gradient(circle at 85% 65%, rgba(186, 70, 13, 0.12) 0%, transparent 40%),
+      radial-gradient(circle at 50% 90%, rgba(197, 149, 56, 0.08) 0%, transparent 45%),
+      linear-gradient(rgba(16, 20, 24, 0.96), rgba(12, 16, 20, 0.98));
+    color: #cbd5e1;
+  }
+}
+
+/* Subtle geometric grid background pattern */
+.bg-grid-pattern {
+  background-size: 40px 40px;
+  background-image:
+    linear-gradient(to right, rgba(64, 64, 64, 0.18) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(64, 64, 64, 0.18) 1px, transparent 1px);
+}
+
+/* Custom glow utility classes */
+.glow-teal-sm {
+  box-shadow: 0 0 16px rgba(24, 91, 99, 0.35);
+}
+
+.glow-amber-sm {
+  box-shadow: 0 0 16px rgba(186, 70, 13, 0.35);
+}
+
+.glow-gold-sm {
+  box-shadow: 0 0 16px rgba(197, 149, 56, 0.35);
+}
+
+.glow-crimson-sm {
+  box-shadow: 0 0 16px rgba(192, 38, 28, 0.35);
+}
+
+/* Hide scrollbar for clean carousels */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
