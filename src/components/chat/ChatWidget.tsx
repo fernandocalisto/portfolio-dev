@@ -245,7 +245,7 @@ export const ChatWidget: React.FC = () => {
             </form>
 
             <div className="flex items-center justify-between mt-2 text-[10px] text-slate-500 font-mono px-1">
-              <span>Dobby • Guia Oficial • Gemini Flash</span>
+              <span>Dobby • Guia Oficial</span>
               {messages.length > 2 && (
                 <button
                   type="button"

@@ -97,9 +97,9 @@ async function parseRequestBody(req: any): Promise<any> {
 }
 
 const DEFAULT_MODELS = [
-  'openrouter/free',
   'google/gemma-4-31b-it:free',
   'qwen/qwen3.8-27b:free',
+  'meta-llama/llama-3.2-3b-instruct:free',
 ];
 
 export default async function handler(req: any, res: any) {
