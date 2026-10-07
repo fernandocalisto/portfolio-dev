@@ -40,9 +40,10 @@ export const Navbar: React.FC<NavbarProps> = () => {
           className="group flex items-center gap-1.5 font-mono font-bold text-lg sm:text-xl text-white tracking-wide hover:text-brand-gold transition-colors duration-200"
           aria-label="Fernando Calisto - Página Inicial"
         >
-          <span className="text-brand-teal font-extrabold transition-transform group-hover:-translate-x-1">&lt;/</span>
-          <span className="text-slate-100 group-hover:text-white font-sans font-extrabold tracking-tight">Fernando Calisto</span>
-          <span className="text-brand-teal font-extrabold transition-transform group-hover:translate-x-1">&gt;</span>
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded bg-brand-teal"></span>
+            <span className="text-slate-100 group-hover:text-white font-display font-extrabold tracking-tight">Fernando Calisto</span>
+          </div>
         </a>
 
         {/* Desktop Navigation */}

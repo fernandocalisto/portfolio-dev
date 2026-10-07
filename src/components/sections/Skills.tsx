@@ -54,7 +54,7 @@ export const Skills: React.FC = () => {
               onClick={() => setFilter(cat.id as any)}
               className={`px-4 py-2 rounded-lg font-mono text-xs transition-all ${
                 filter === cat.id
-                  ? 'bg-brand-teal text-white font-bold border border-brand-teal glow-teal-sm'
+                  ? 'bg-brand-teal text-white font-bold border border-brand-teal shadow-md'
                   : 'bg-brand-card text-slate-400 border border-brand-border hover:text-slate-200 hover:border-slate-500'
               }`}
             >
@@ -82,7 +82,7 @@ export const Skills: React.FC = () => {
               </div>
 
               <div className="w-full">
-                <h3 className="text-xs sm:text-sm font-semibold text-slate-100 font-sans truncate">
+                <h3 className="text-xs sm:text-sm font-semibold text-slate-100 font-display truncate">
                   {skill.name}
                 </h3>
                 <span className="text-[10px] font-mono text-slate-400 block mt-0.5">

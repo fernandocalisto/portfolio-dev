@@ -10,7 +10,7 @@ export const Footer: React.FC = () => {
     <footer className="border-t border-brand-borderMuted/40 bg-[#0c1014] py-10 text-xs font-mono text-slate-500">
       <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
         <div className="flex items-center gap-2">
-          <span className="text-brand-teal font-bold">&lt;/&gt;</span>
+          <span className="w-2 h-2 rounded bg-brand-teal block"></span>
           <span>© 2026 Fernando Henrique Braga Calisto. Todos os direitos reservados.</span>
         </div>
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { timelineData } from '../../data/timeline';
 
 export const Timeline: React.FC = () => {
@@ -77,11 +77,11 @@ export const Timeline: React.FC = () => {
         <div className="max-w-3xl mx-auto">
           <div className="relative bg-brand-card/90 border border-brand-border rounded-2xl p-6 sm:p-10 shadow-2xl backdrop-blur-md overflow-hidden transition-all duration-300">
             {/* Background Accent Glow */}
-            <div className="absolute -top-16 -right-16 w-52 h-52 bg-brand-gold/10 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute -top-16 -right-16 w-52 h-52 bg-brand-gold/5 rounded-full blur-3xl pointer-events-none opacity-50" />
 
             <div className="flex items-center justify-between gap-4 mb-4">
               <div className="flex items-center gap-2">
-                <span className="px-3 py-1 rounded-full bg-brand-amber/15 border border-brand-amber/40 text-brand-amber font-mono text-xs font-bold uppercase tracking-wider">
+                <span className="px-3 py-1 rounded-lg bg-brand-amber/15 border border-brand-amber/40 text-brand-amber font-mono text-xs font-bold uppercase tracking-wider">
                   {activeItem.tag}
                 </span>
                 {activeItem.period && (
@@ -101,13 +101,12 @@ export const Timeline: React.FC = () => {
               {activeItem.title}
             </h3>
 
-            <p className="text-slate-300 text-sm sm:text-base leading-relaxed mb-6 font-sans">
+            <p className="text-slate-300 text-sm sm:text-base leading-relaxed mb-6 font-mono">
               {activeItem.desc}
             </p>
 
             {activeItem.highlight && (
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-brand-dark border border-brand-border text-xs font-mono text-brand-gold">
-                <Sparkles className="w-3.5 h-3.5 text-brand-amber" />
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-brand-dark border-l-2 border-brand-gold border-y border-r border-brand-border text-xs font-mono text-brand-gold">
                 <span>Foco: {activeItem.highlight}</span>
               </div>
             )}

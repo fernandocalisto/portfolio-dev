@@ -41,7 +41,7 @@ export const Projects: React.FC<ProjectsProps> = ({ onSelectProject }) => {
               onClick={() => setFilter(cat.id as any)}
               className={`px-4 py-2 rounded-lg font-mono text-xs transition-all ${
                 filter === cat.id
-                  ? 'bg-brand-amber text-white font-bold border border-brand-amber glow-amber-sm'
+                  ? 'bg-brand-amber text-white font-bold border border-brand-amber shadow-md'
                   : 'bg-brand-card text-slate-400 border border-brand-border hover:text-slate-200 hover:border-slate-500'
               }`}
             >
@@ -59,14 +59,14 @@ export const Projects: React.FC<ProjectsProps> = ({ onSelectProject }) => {
             >
               {/* Card Banner Preview */}
               <div
-                className="h-48 relative overflow-hidden border-b border-brand-border p-5 flex flex-col justify-between"
+                className="min-h-[14rem] relative border-b border-brand-border p-5 flex flex-col justify-between"
                 style={{
                   background: `linear-gradient(135deg, #12161a 0%, ${project.accentColor}25 100%)`
                 }}
               >
-                <div className="flex items-center justify-between z-10">
+                <div className="flex flex-col gap-1.5 z-10">
                   <span
-                    className="px-2.5 py-0.5 text-[10px] font-mono rounded-full font-semibold"
+                    className="self-start px-2.5 py-0.5 text-[10px] font-mono rounded-lg font-semibold"
                     style={{
                       backgroundColor: `${project.tagColor}20`,
                       color: project.tagColor,
@@ -75,7 +75,7 @@ export const Projects: React.FC<ProjectsProps> = ({ onSelectProject }) => {
                   >
                     {project.tag}
                   </span>
-                  <span className="text-xs font-mono text-slate-400">{project.role}</span>
+                  <span className="text-[11px] font-mono text-slate-300">{project.role}</span>
                 </div>
 
                 {/* Logo & Project Title */}
@@ -93,18 +93,12 @@ export const Projects: React.FC<ProjectsProps> = ({ onSelectProject }) => {
                   <span className="text-xl sm:text-2xl font-mono font-extrabold text-white tracking-wider group-hover:text-brand-gold transition-colors">
                     {project.title.split('—')[0].trim()}
                   </span>
-                  <p className="text-[11px] text-slate-400 font-mono mt-0.5 truncate max-w-[240px]">
+                  <p className="text-[11px] text-slate-400 font-mono mt-0.5 leading-snug">
                     {project.subtitle}
                   </p>
                 </div>
 
-                {/* Bottom line */}
-                <div className="h-1 w-full bg-brand-border/60 rounded-full overflow-hidden">
-                  <div
-                    className="h-full w-full"
-                    style={{ backgroundColor: project.accentColor }}
-                  />
-                </div>
+                
               </div>
 
               {/* Card Body */}
@@ -121,7 +115,7 @@ export const Projects: React.FC<ProjectsProps> = ({ onSelectProject }) => {
                 <div>
                   {/* Tech Tags */}
                   <div className="flex flex-wrap gap-1.5 mb-5">
-                    {project.techStack.slice(0, 4).map((tech) => (
+                    {project.techStack.map((tech) => (
                       <span
                         key={tech}
                         className="text-[10px] font-mono px-2 py-0.5 rounded bg-brand-dark text-slate-300 border border-brand-border"
@@ -129,11 +123,6 @@ export const Projects: React.FC<ProjectsProps> = ({ onSelectProject }) => {
                         {tech}
                       </span>
                     ))}
-                    {project.techStack.length > 4 && (
-                      <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-brand-dark text-brand-gold border border-brand-border">
-                        +{project.techStack.length - 4}
-                      </span>
-                    )}
                   </div>
 
                   {/* Actions: Case Study Modal & Contact */}

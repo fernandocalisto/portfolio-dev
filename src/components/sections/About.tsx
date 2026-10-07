@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, Github, Linkedin, Phone, Trophy, Sparkles, Building, Rocket } from 'lucide-react';
+import { Mail, Github, Linkedin, Phone, Trophy, Building, Rocket } from 'lucide-react';
 
 export const About: React.FC = () => {
   return (
@@ -14,23 +14,18 @@ export const About: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* Profile Column */}
           <div className="lg:col-span-4 flex flex-col items-center text-center">
-            {/* Profile Frame */}
-            <div className="relative w-48 h-48 sm:w-56 sm:h-56 rounded-2xl p-1.5 bg-gradient-to-tr from-brand-teal via-brand-gold/60 to-brand-amber glow-teal-sm mb-5 shadow-2xl">
-              <div className="w-full h-full rounded-2xl overflow-hidden bg-brand-dark flex flex-col items-center justify-center border border-brand-border p-4">
-                <div className="w-20 h-20 rounded-2xl bg-brand-teal/20 border border-brand-teal/50 flex items-center justify-center text-brand-gold mb-3 shadow-inner">
-                  <span className="font-mono font-extrabold text-3xl tracking-tight">FC</span>
-                </div>
-                <span className="text-xs font-mono text-brand-gold font-semibold uppercase tracking-wider">
-                  Engenharia da Computação
-                </span>
-                <span className="text-[11px] font-mono text-slate-400 mt-2 flex items-center gap-1.5 bg-brand-card px-2.5 py-1 rounded-full border border-brand-border">
-                  <Trophy className="w-3.5 h-3.5 text-brand-amber" />
-                  Atleta de Alto Nível
-                </span>
+            <div className="relative w-48 h-48 sm:w-56 sm:h-56 rounded-2xl p-1.5 bg-gradient-to-tr from-brand-teal via-brand-gold/60 to-brand-amber mb-5 shadow-2xl">
+              <div className="w-full h-full rounded-2xl overflow-hidden bg-brand-dark border border-brand-border">
+                <img
+                  src="/assets/profile.jpg"
+                  alt="Fernando Calisto"
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
               </div>
             </div>
 
-            <h3 className="text-xl font-bold text-white font-sans">
+            <h3 className="text-xl font-bold text-white font-display">
               Fernando Henrique Braga Calisto
             </h3>
             <p className="text-xs font-mono text-brand-teal font-semibold mt-1">
@@ -87,8 +82,8 @@ export const About: React.FC = () => {
             <div className="text-slate-300 text-sm sm:text-base leading-relaxed bg-brand-card/70 border border-brand-border p-6 sm:p-7 rounded-2xl shadow-xl space-y-3">
               <p>
                 Estudante de Engenharia da Computação focado em criar arquiteturas de software escaláveis e interfaces
-                modernas. Possuo uma forte mentalidade <strong className="text-brand-gold font-semibold">AI-First</strong>,
-                com experiência na integração de modelos de Inteligência Artificial e automação de processos complexos.
+                modernas. Possuo uma forte mentalidade de engenharia de produto,
+                com experiência na integração de serviços escaláveis e automação de processos complexos.
               </p>
               <p>
                 Sou fundador da startup <strong className="text-white font-semibold">TALOS</strong> e atuo como CEO da
@@ -102,7 +97,7 @@ export const About: React.FC = () => {
             </div>
 
             {/* Key Pillar Highlights */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 font-mono text-xs">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 font-mono text-xs">
               <div className="bg-brand-card p-4 rounded-xl border border-brand-border hover:border-brand-amber/60 transition-colors">
                 <span className="text-brand-amber flex items-center gap-2 text-sm font-bold mb-1.5">
                   <Rocket className="w-4 h-4" />
@@ -119,12 +114,14 @@ export const About: React.FC = () => {
                 <span className="text-slate-400 block text-[11px]">CEO &amp; Arquiteto de Software</span>
               </div>
 
-              <div className="bg-brand-card p-4 rounded-xl border border-brand-border hover:border-brand-gold/60 transition-colors">
-                <span className="text-brand-gold flex items-center gap-2 text-sm font-bold mb-1.5">
-                  <Sparkles className="w-4 h-4" />
-                  AI-First &amp; Performance
-                </span>
-                <span className="text-slate-400 block text-[11px]">Pipelines de IA &amp; Automação</span>
+              <div className="sm:col-span-2 bg-brand-card p-4 rounded-xl border border-brand-border hover:border-brand-gold/60 transition-colors flex flex-col sm:flex-row sm:items-center justify-between">
+                <div>
+                  <span className="text-brand-gold flex items-center gap-2 text-sm font-bold mb-1.5">
+                    <Trophy className="w-4 h-4" />
+                    Engenharia &amp; Performance
+                  </span>
+                  <span className="text-slate-400 block text-[11px]">Foco em Arquiteturas Escaláveis e UI/UX</span>
+                </div>
               </div>
             </div>
           </div>

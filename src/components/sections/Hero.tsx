@@ -8,28 +8,28 @@ export const Hero: React.FC = () => {
     backend: {
       title: 'Java Spring Boot Core',
       desc: 'Microsserviços robustos, Clean Architecture, controle transacional e alta concorrência.',
-      latency: '< 15ms',
+      latency: 'OTIMIZADA',
       status: 'OPERACIONAL',
       tag: 'SPRING 3.x'
     },
     ai: {
-      title: 'Engine AI-First & LLM Agents',
-      desc: 'Orquestração de agentes, pipelines assíncronos no n8n e scripts Python para automação inteligente.',
-      latency: '< 120ms (Stream)',
-      status: 'OTIMIZADO',
+      title: 'Integração de IA & Automação',
+      desc: 'Desenvolvimento de fluxos no n8n e scripts Python para processos de negócio e dados.',
+      latency: 'ASSÍNCRONA',
+      status: 'MONITORADO',
       tag: 'LLM & n8n'
     },
     frontend: {
       title: 'Interface React & TypeScript',
-      desc: 'Design systems escaláveis, tipagem rigorosa, zero hydration mismatch e alta responsividade.',
-      latency: '60 FPS',
+      desc: 'Design systems escaláveis, tipagem rigorosa e alta responsividade com React.',
+      latency: 'FLUIDA',
       status: 'REATIVO',
       tag: 'VITE + TS'
     },
     db: {
       title: 'Persistência & Dados (PostgreSQL)',
-      desc: 'Modelagem relacional otimizada, índices eficientes e integridade referencial corporativa.',
-      latency: '< 4ms',
+      desc: 'Modelagem relacional otimizada, índices eficientes e integridade referencial.',
+      latency: 'SEGURA',
       status: 'CONECTADO',
       tag: 'POSTGRESQL'
     }
@@ -40,8 +40,8 @@ export const Hero: React.FC = () => {
       <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         {/* Left Column: Bio & Pitch */}
         <div className="lg:col-span-7 space-y-6">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-teal/15 border border-brand-teal/40 text-brand-gold font-mono text-xs tracking-wider uppercase shadow-sm">
-            <span className="w-2 h-2 rounded-full bg-brand-amber animate-pulse"></span>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-brand-teal/15 border border-brand-teal/40 text-brand-gold font-mono text-xs tracking-wider uppercase shadow-sm">
+            <span className="w-2 h-2 rounded-lg bg-brand-amber animate-pulse"></span>
             Desenvolvedor Full-Stack e Arquiteto de Software
           </div>
 
@@ -53,17 +53,17 @@ export const Hero: React.FC = () => {
           </h1>
 
           <p className="text-slate-300 text-base sm:text-lg leading-relaxed max-w-xl">
-            Arquiteto de software com forte mentalidade <span className="text-brand-gold font-semibold">AI-First</span>.
+            Arquiteto de software com foco em engenharia sólida e performance.
             Fundador da startup <strong className="text-white font-semibold">TALOS</strong> e CEO da{' '}
             <strong className="text-white font-semibold">DRAKON Code</strong>, focado na criação de soluções escaláveis,
-            automação corporativa e interfaces de alta performance.
+            automação corporativa e interfaces reativas.
           </p>
 
           {/* Action CTAs */}
           <div className="pt-2 flex flex-wrap items-center gap-4">
             <a
               href="#laboratorio"
-              className="px-7 py-3.5 rounded-lg bg-brand-teal text-white hover:bg-brand-tealHover font-mono text-sm font-bold tracking-wider uppercase transition-all duration-300 glow-teal-sm inline-flex items-center gap-2 border border-brand-teal group"
+              className="px-7 py-3.5 rounded-lg bg-brand-teal text-white hover:bg-brand-tealHover font-mono text-sm font-bold tracking-wider uppercase transition-all duration-300 shadow-md inline-flex items-center gap-2 border border-brand-teal group"
             >
               <span>Ver Projetos</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -79,8 +79,8 @@ export const Hero: React.FC = () => {
           {/* Quick Metrics */}
           <div className="pt-4 grid grid-cols-3 gap-4 border-t border-brand-borderMuted/40 max-w-lg">
             <div>
-              <span className="block text-2xl font-extrabold text-white font-mono">100%</span>
-              <span className="text-xs text-slate-400 font-mono">Foco AI-First</span>
+              <span className="block text-2xl font-extrabold text-white font-mono">Full-Stack</span>
+              <span className="text-xs text-slate-400 font-mono">Engenharia de Software</span>
             </div>
             <div>
               <span className="block text-2xl font-extrabold text-brand-gold font-mono">CEO</span>
@@ -99,15 +99,15 @@ export const Hero: React.FC = () => {
             {/* Terminal Window Header */}
             <div className="flex items-center justify-between border-b border-brand-border pb-3 mb-4">
               <div className="flex items-center gap-2">
-                <span className="w-3 h-3 rounded-full bg-brand-crimson inline-block"></span>
-                <span className="w-3 h-3 rounded-full bg-brand-gold inline-block"></span>
-                <span className="w-3 h-3 rounded-full bg-brand-teal inline-block"></span>
+                <span className="w-3 h-3 rounded-lg bg-brand-crimson inline-block"></span>
+                <span className="w-3 h-3 rounded-lg bg-brand-gold inline-block"></span>
+                <span className="w-3 h-3 rounded-lg bg-brand-teal inline-block"></span>
               </div>
               <div className="text-[11px] font-mono text-slate-400 flex items-center gap-1.5">
                 <Terminal className="w-3.5 h-3.5 text-brand-gold" />
-                <span>architecture.system.status</span>
+                <span>architecture.overview</span>
               </div>
-              <span className="text-brand-gold text-xs font-mono font-bold">&lt;LIVE/&gt;</span>
+              <span className="text-brand-gold text-xs font-mono font-bold">V 1.0</span>
             </div>
 
             {/* Architecture Node Switcher */}
@@ -116,7 +116,7 @@ export const Hero: React.FC = () => {
                 onClick={() => setActiveNode('ai')}
                 className={`p-2.5 rounded-lg border text-left font-mono transition-all ${
                   activeNode === 'ai'
-                    ? 'bg-brand-amber/15 border-brand-amber text-white glow-amber-sm'
+                    ? 'bg-brand-amber/15 border-brand-amber text-white shadow-md'
                     : 'bg-brand-dark border-brand-border text-slate-400 hover:border-slate-500'
                 }`}
               >
@@ -131,7 +131,7 @@ export const Hero: React.FC = () => {
                 onClick={() => setActiveNode('backend')}
                 className={`p-2.5 rounded-lg border text-left font-mono transition-all ${
                   activeNode === 'backend'
-                    ? 'bg-brand-teal/20 border-brand-teal text-white glow-teal-sm'
+                    ? 'bg-brand-teal/20 border-brand-teal text-white shadow-md'
                     : 'bg-brand-dark border-brand-border text-slate-400 hover:border-slate-500'
                 }`}
               >
@@ -146,7 +146,7 @@ export const Hero: React.FC = () => {
                 onClick={() => setActiveNode('frontend')}
                 className={`p-2.5 rounded-lg border text-left font-mono transition-all ${
                   activeNode === 'frontend'
-                    ? 'bg-brand-gold/15 border-brand-gold text-white glow-gold-sm'
+                    ? 'bg-brand-gold/15 border-brand-gold text-white shadow-md'
                     : 'bg-brand-dark border-brand-border text-slate-400 hover:border-slate-500'
                 }`}
               >
@@ -185,7 +185,7 @@ export const Hero: React.FC = () => {
                 </span>
               </div>
 
-              <p className="text-xs text-slate-300 font-sans leading-relaxed">
+              <p className="text-xs text-slate-300 font-mono leading-relaxed">
                 {nodeDetails[activeNode].desc}
               </p>
 
@@ -203,7 +203,7 @@ export const Hero: React.FC = () => {
             <div className="mt-4 pt-3 border-t border-brand-border text-[11px] font-mono flex items-center justify-between text-slate-400">
               <span className="flex items-center gap-1.5 text-slate-300">
                 <ShieldCheck className="w-3.5 h-3.5 text-brand-teal" />
-                Pipeline Ativo &amp; Monitorado
+                Arquitetura Documentada
               </span>
               <span className="text-brand-gold font-bold">TALOS &amp; DRAKON</span>
             </div>
