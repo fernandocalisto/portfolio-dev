@@ -6,7 +6,7 @@ export const skillsData: SkillItem[] = [
     name: 'Java Spring Boot',
     category: 'backend',
     categoryLabel: 'Backend & Arquitetura',
-    level: 'Avançado',
+    level: 'Intermediário',
     icon: 'Cpu',
     color: '#185b63',
     featured: true
@@ -16,7 +16,7 @@ export const skillsData: SkillItem[] = [
     name: 'React.js & Next.js',
     category: 'frontend',
     categoryLabel: 'Frontend Moderno',
-    level: 'Avançado',
+    level: 'Intermediário',
     icon: 'Layers',
     color: '#185b63',
     featured: true
@@ -26,7 +26,7 @@ export const skillsData: SkillItem[] = [
     name: 'Node.js & Express',
     category: 'backend',
     categoryLabel: 'Backend & APIs',
-    level: 'Avançado',
+    level: 'Intermediário',
     icon: 'Server',
     color: '#c59538',
     featured: true
@@ -36,7 +36,7 @@ export const skillsData: SkillItem[] = [
     name: 'TypeScript',
     category: 'frontend',
     categoryLabel: 'Tipagem Estrita',
-    level: 'Avançado',
+    level: 'Intermediário',
     icon: 'Code2',
     color: '#185b63',
     featured: true
@@ -46,7 +46,7 @@ export const skillsData: SkillItem[] = [
     name: 'PostgreSQL & SQL',
     category: 'database',
     categoryLabel: 'Bancos Relacionais',
-    level: 'Avançado',
+    level: 'Intermediário',
     icon: 'Database',
     color: '#185b63',
     featured: true
@@ -56,7 +56,7 @@ export const skillsData: SkillItem[] = [
     name: 'Python',
     category: 'backend',
     categoryLabel: 'Scripts & Automação',
-    level: 'Avançado',
+    level: 'Intermediário',
     icon: 'Terminal',
     color: '#c59538',
     featured: true
@@ -66,7 +66,7 @@ export const skillsData: SkillItem[] = [
     name: 'IA & Automação (n8n, LLMs)',
     category: 'ai',
     categoryLabel: 'AI-First Pipelines',
-    level: 'Especialista',
+    level: 'Intermediário',
     icon: 'Bot',
     color: '#ba460d',
     featured: true
@@ -85,7 +85,7 @@ export const skillsData: SkillItem[] = [
     name: 'Tailwind CSS',
     category: 'frontend',
     categoryLabel: 'Design Systems',
-    level: 'Avançado',
+    level: 'Intermediário',
     icon: 'Palette',
     color: '#c59538'
   },
@@ -94,7 +94,7 @@ export const skillsData: SkillItem[] = [
     name: 'Arquitetura REST & Microservices',
     category: 'backend',
     categoryLabel: 'Sistemas Distribuídos',
-    level: 'Avançado',
+    level: 'Intermediário',
     icon: 'Network',
     color: '#c59538'
   }
