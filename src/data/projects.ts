@@ -78,5 +78,31 @@ export const projectsData: ProjectItem[] = [
     ],
     featured: true,
     link: 'https://github.com/fernandocalisto'
+  },
+  {
+    id: 'jasper',
+    title: 'JasperReports Developer Tools',
+    subtitle: 'Extensão VS Code para JasperReports',
+    role: 'Autor & Desenvolvedor',
+    category: 'devtool',
+    tag: 'VS CODE EXTENSION',
+    tagColor: '#0e639c',
+    accentColor: '#0e639c',
+    logo: '/assets/jasper-logo.jpg',
+    summary: 'Extensão leve e profissional para VS Code que substitui o Jaspersoft Studio — edição nativa de .jrxml, preview PDF em tempo real, integração com bancos de dados, deploy no JasperServer e autocomplete inteligente, com zero processos em background.',
+    challenge: 'O Jaspersoft Studio é pesado, baseado em Eclipse, consome memória excessiva, trava constantemente e exige um servidor rodando apenas para compilar relatórios — um fluxo insustentável para times corporativos e hospitalares.',
+    architecture: [
+      'Arquitetura Zero-Daemon: engine Java compila sob demanda e encerra imediatamente, sem processos residentes',
+      'Credenciais armazenadas com segurança no OS keyring (Windows/macOS/Linux) via VS Code SecretStorage',
+      'Preview PDF.js com live reload, field viewer com inspeção de SQL, snippets e autocomplete inteligente para $F{}, $P{}, $V{}'
+    ],
+    techStack: ['TypeScript', 'Node.js', 'Java', 'JasperReports 6.21', 'PostgreSQL', 'Oracle', 'VS Code API'],
+    metrics: [
+      'Publicado no VS Code Marketplace com suporte a PostgreSQL, Oracle e drivers customizados',
+      'Compilação e preview de relatórios sem servidor — apenas Java 11+ no PATH',
+      'Integração REST nativa com JasperServer v2 para deploy e gestão de relatórios'
+    ],
+    featured: true,
+    link: 'https://marketplace.visualstudio.com/items?itemName=fernandocalisto.jasper-reports-tools'
   }
 ];

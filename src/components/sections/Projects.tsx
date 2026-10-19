@@ -8,13 +8,14 @@ interface ProjectsProps {
 }
 
 export const Projects: React.FC<ProjectsProps> = ({ onSelectProject }) => {
-  const [filter, setFilter] = useState<'all' | 'startup' | 'enterprise' | 'ai'>('all');
+  const [filter, setFilter] = useState<'all' | 'startup' | 'enterprise' | 'ai' | 'devtool'>('all');
 
   const categories = [
     { id: 'all', label: 'Todos os Projetos' },
     { id: 'startup', label: 'Startup & B2B' },
     { id: 'enterprise', label: 'Empresa Júnior' },
     { id: 'ai', label: 'IA & Automação' },
+    { id: 'devtool', label: 'Ferramentas Dev' },
   ];
 
   const filteredProjects = filter === 'all'

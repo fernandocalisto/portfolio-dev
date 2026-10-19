@@ -23,7 +23,7 @@ export interface ProjectItem {
   title: string;
   subtitle: string;
   role: string;
-  category: 'startup' | 'enterprise' | 'ai';
+  category: 'startup' | 'enterprise' | 'ai' | 'devtool';
   tag: string;
   tagColor: string;
   accentColor: string;
