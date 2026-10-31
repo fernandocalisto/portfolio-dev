@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Phone, Github, Linkedin, Send, Loader2 } from 'lucide-react';
+import { Mail, Github, Linkedin, Send, Loader2 } from 'lucide-react';
 
 interface ContactProps {
   onSuccess: (message: string) => void;
@@ -71,24 +71,6 @@ export const Contact: React.FC<ContactProps> = ({ onSuccess, onError }) => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
           {/* Direct Channels Column */}
           <div className="lg:col-span-6 space-y-4">
-            {/* WhatsApp */}
-            <a
-              href="https://wa.me/5518991554376"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-4 p-4 rounded-2xl bg-brand-card border border-brand-border hover:border-brand-amber/80 transition-all duration-200 group shadow-lg"
-            >
-              <div className="w-12 h-12 rounded-xl bg-brand-amber/15 text-brand-amber flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
-                <Phone className="w-5 h-5" />
-              </div>
-              <div className="overflow-hidden">
-                <span className="text-xs font-mono text-slate-400 block uppercase">WHATSAPP / TELEFONE</span>
-                <span className="text-white font-mono text-sm tracking-wide group-hover:text-brand-amber transition-colors font-bold">
-                  (18) 99155-4376
-                </span>
-              </div>
-            </a>
-
             {/* Email */}
             <a
               href="mailto:fernandocalisto.dev@gmail.com"
