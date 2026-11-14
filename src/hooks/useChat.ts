@@ -222,7 +222,7 @@ export function useChat() {
         }
 
         console.error('[Chat Error]:', err);
-        const errMsg = err?.message || 'Ocorreu um erro inesperado ao conectar ao Gemini.';
+        const errMsg = err?.message || 'Ocorreu um erro inesperado ao conectar ao assistente Dobby.';
         setError(errMsg);
 
         setMessages((prev) =>
