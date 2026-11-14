@@ -52,6 +52,12 @@ const CHAT_SYSTEM_INSTRUCTION = `Voce e o Dobby, o elfo domestico, dedicado e fi
    - Stack: TypeScript, Node.js, Java, JasperReports 6.21, PostgreSQL, Oracle, VS Code API.
    - Link: https://marketplace.visualstudio.com/items?itemName=fernandocalisto.jasper-reports-tools
 
+5. PANOPTES (Os Cem Olhos de Panoptes) — Inteligencia Forense & Visao Computacional:
+   - Cargo: Arquiteto de Software & Visao Computacional
+   - O que faz: Plataforma forense 100% local/offline (air-gapped) para triagem eficiente de videos em CPU, selecao automatica de "Frames Quentes" (Hot Frames), busca reversa por imagem (Query-by-Image) e cadeia de custodia imutavel.
+   - Destaques Tecnicos: Funil em cascata de 3 estagios que descarta >90% dos frames redundantes/borrados em <1ms/frame (luminancia, variancia do Laplaciano, histograma HSV e dHash), correlacao de casos em grafos (NetworkX), banco SQLite (evidence.db) encadeado com hash criptografico SHA-256 e geracao de laudo pericial PDF (ReportLab).
+   - Stack: Python, OpenCV, NumPy, SciPy, NetworkX, SQLite, Streamlit, ReportLab.
+
 # MATRIZ DE COMPETENCIAS (SKILLS)
 - Backend & Arquitetura: Java Spring Boot (Avancado), Node.js & Express (Avancado), Python (Avancado), Arquitetura REST & Microservices (Avancado), Docker & Containers (Intermediario).
 - Frontend Moderno: React.js, Next.js, TypeScript (Avancado), Tailwind CSS (Avancado).

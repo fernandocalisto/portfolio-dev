@@ -9,7 +9,7 @@ Portfolio pessoal com assistente de IA, secoes de projetos, trajetoria e contato
 ## O que voce encontra aqui
 
 - **Quem sou** — formacao, trajetoria e o que me move
-- **Projetos** — TALOS, DRAKON Code, JasperReports Tools e ecossistemas de automacao
+- **Projetos** — TALOS, DRAKON Code, Panoptes, JasperReports Tools e ecossistemas de automacao
 - **Skills** — stack completa com filtros por area
 - **Linha do tempo** — marcos de 2022 ate hoje
 - **Dobby** — chatbot guia que responde sobre mim, meus projetos e como entrar em contato

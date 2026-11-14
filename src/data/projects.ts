@@ -104,5 +104,30 @@ export const projectsData: ProjectItem[] = [
     ],
     featured: true,
     link: 'https://marketplace.visualstudio.com/items?itemName=fernandocalisto.jasper-reports-tools'
+  },
+  {
+    id: 'panoptes',
+    title: 'PANOPTES — Inteligência Forense & Visão Computacional',
+    subtitle: 'Triagem de Vídeos Air-Gapped, Query-by-Image & Cadeia de Custódia',
+    role: 'Arquiteto de Software & Visão Computacional',
+    category: 'ai',
+    tag: 'COMPUTER VISION & FORENSICS',
+    tagColor: '#c59538',
+    accentColor: '#c59538',
+    logo: '/assets/panoptes-logo.jpg',
+    summary: 'Plataforma forense 100% offline (air-gapped) inspirada em Argos Panoptes para triagem ultrarrápida de vídeos em CPU, seleção inteligente de "Frames Quentes" (Hot Frames), busca reversa multimodal por imagem e cadeia de custódia criptográfica imutável.',
+    challenge: 'Investigações periciais exigem analisar horas de vídeos em máquinas isoladas da internet e sem GPUs dedicadas, onde rodar modelos pesados frame a frame torna a análise lenta, custosa e inviável.',
+    architecture: [
+      'Funil de 3 estágios para "Frames Quentes": filtragem em < 1 ms/frame via luminância, variância do Laplaciano (nitidez), histograma HSV e distância de Hamming (dHash), seguida de gatilhos semânticos leves (Hotness Score)',
+      'Motor de busca multimodal Query-by-Image combinando hashes perceptuais (pHash/dHash), assinatura estrutural/facial e correlação de evidências entre casos via grafos (NetworkX)',
+      'Cadeia de custódia forense em SQLite (evidence.db) com log de auditoria encadeado via SHA-256, validação Human-in-the-Loop e emissão automatizada de Laudo Pericial em PDF/JSON'
+    ],
+    techStack: ['Python', 'OpenCV', 'NumPy / SciPy', 'NetworkX', 'SQLite (SHA-256)', 'Streamlit', 'ReportLab'],
+    metrics: [
+      'Descarte automático de >90% dos frames redundantes ou borrados antes da extração profunda em CPU',
+      'Operação 100% local (air-gapped) com verificação criptográfica de integridade da cadeia de custódia',
+      'Busca ativa Query-by-Image com ranqueamento explicável por cena, objetos, rosto/pose e hash perceptual'
+    ],
+    featured: true
   }
 ];

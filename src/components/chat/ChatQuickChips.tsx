@@ -9,6 +9,7 @@ interface ChatQuickChipsProps {
 const QUICK_PROMPTS = [
   { label: '🧦 Quem é você?', prompt: 'Quem é você?' },
   { label: '💼 TALOS & Soluções B2B', prompt: 'Me conte sobre os projetos e automações desenvolvidos na TALOS.' },
+  { label: '👁️ Panoptes (Visão & Forense)', prompt: 'Como funciona a arquitetura do projeto Panoptes de visão computacional e perícia forense?' },
   { label: '🧩 Extensão VS Code (Jasper)', prompt: 'Como funciona a extensão JasperReports Developer Tools para VS Code criada pelo Fernando?' },
   { label: '🛠️ Stack & Arquitetura', prompt: 'Quais são as principais tecnologias e stacks do Fernando?' },
   { label: '🚀 DRAKON Code & Liderança', prompt: 'Como foi a atuação do Fernando como CEO da DRAKON Code?' },
