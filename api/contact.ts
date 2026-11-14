@@ -20,6 +20,15 @@ function checkRateLimit(ip: string): boolean {
   return true;
 }
 
+function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 async function parseRequestBody(req: any): Promise<any> {
   if (req.body && typeof req.body === 'object') {
     return req.body;
@@ -108,10 +117,44 @@ export default async function handler(req: any, res: any) {
     const { name, email, message } = body;
 
     // Validação do payload
-    if (!name?.trim() || !email?.trim() || !message?.trim()) {
+    if (
+      typeof name !== 'string' ||
+      typeof email !== 'string' ||
+      typeof message !== 'string' ||
+      !name.trim() ||
+      !email.trim() ||
+      !message.trim()
+    ) {
       res.statusCode = 400;
       res.setHeader('Content-Type', 'application/json');
       res.end(JSON.stringify({ error: 'Por favor, preencha todos os campos do formulário.' }));
+      return;
+    }
+
+    const trimmedName = name.trim();
+    const trimmedEmail = email.trim();
+    const trimmedMessage = message.trim();
+
+    if (
+      trimmedName.length > 120 ||
+      trimmedEmail.length > 160 ||
+      trimmedMessage.length > 4000
+    ) {
+      res.statusCode = 400;
+      res.setHeader('Content-Type', 'application/json');
+      res.end(
+        JSON.stringify({
+          error: 'Um ou mais campos excederam o tamanho máximo permitido (Nome: 120, E-mail: 160, Mensagem: 4000 caracteres).',
+        })
+      );
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(trimmedEmail)) {
+      res.statusCode = 400;
+      res.setHeader('Content-Type', 'application/json');
+      res.end(JSON.stringify({ error: 'Por favor, informe um endereço de e-mail válido.' }));
       return;
     }
 
@@ -119,11 +162,11 @@ export default async function handler(req: any, res: any) {
     const text = `
 <b>🚀 Novo Contato pelo Portfólio</b>
 
-<b>Nome:</b> ${name.trim()}
-<b>E-mail:</b> ${email.trim()}
+<b>Nome:</b> ${escapeHtml(name.trim())}
+<b>E-mail:</b> ${escapeHtml(email.trim())}
 
 <b>Mensagem:</b>
-${message.trim()}
+${escapeHtml(message.trim())}
 `;
 
     // Envia mensagem via API do Telegram Bot
