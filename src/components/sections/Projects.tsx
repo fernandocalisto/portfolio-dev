@@ -126,34 +126,34 @@ export const Projects: React.FC<ProjectsProps> = ({ onSelectProject }) => {
                     ))}
                   </div>
 
-                  {/* Actions: Case Study Modal & Contact */}
+                  {/* Actions: Case Study Modal & External Link / Contact */}
                   <div className="grid grid-cols-2 gap-2">
+                    <button
+                      onClick={() => onSelectProject(project)}
+                      className="py-2.5 px-3 rounded-lg bg-brand-dark hover:bg-brand-darkElevated text-brand-gold font-mono text-xs font-bold tracking-wider uppercase border border-brand-gold/40 hover:border-brand-gold transition-colors flex items-center justify-center gap-1.5"
+                    >
+                      <Layers className="w-3.5 h-3.5" />
+                      <span>Arquitetura</span>
+                    </button>
                     {project.link ? (
                       <a
                         href={project.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="py-2.5 px-3 rounded-lg bg-brand-dark hover:bg-brand-darkElevated text-brand-gold font-mono text-xs font-bold tracking-wider uppercase border border-brand-gold/40 hover:border-brand-gold transition-colors flex items-center justify-center gap-1.5"
+                        className="py-2.5 px-3 rounded-lg bg-brand-amber hover:bg-brand-crimson text-white font-mono text-xs font-bold tracking-wider uppercase transition-colors text-center flex items-center justify-center gap-1 shadow-md"
                       >
-                        <Layers className="w-3.5 h-3.5" />
-                        <span>Saiba Mais</span>
+                        <span>Acessar</span>
+                        <ArrowUpRight className="w-3.5 h-3.5" />
                       </a>
                     ) : (
-                      <button
-                        onClick={() => onSelectProject(project)}
-                        className="py-2.5 px-3 rounded-lg bg-brand-dark hover:bg-brand-darkElevated text-brand-gold font-mono text-xs font-bold tracking-wider uppercase border border-brand-gold/40 hover:border-brand-gold transition-colors flex items-center justify-center gap-1.5"
+                      <a
+                        href="#contato"
+                        className="py-2.5 px-3 rounded-lg bg-brand-amber hover:bg-brand-crimson text-white font-mono text-xs font-bold tracking-wider uppercase transition-colors text-center flex items-center justify-center gap-1 shadow-md"
                       >
-                        <Layers className="w-3.5 h-3.5" />
-                        <span>Arquitetura</span>
-                      </button>
+                        <span>Contato</span>
+                        <ArrowUpRight className="w-3.5 h-3.5" />
+                      </a>
                     )}
-                    <a
-                      href="#contato"
-                      className="py-2.5 px-3 rounded-lg bg-brand-amber hover:bg-brand-crimson text-white font-mono text-xs font-bold tracking-wider uppercase transition-colors text-center flex items-center justify-center gap-1 shadow-md"
-                    >
-                      <span>Contato</span>
-                      <ArrowUpRight className="w-3.5 h-3.5" />
-                    </a>
                   </div>
                 </div>
               </div>

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { X, CheckCircle, Layers, Cpu, ArrowRight } from 'lucide-react';
+import { X, CheckCircle, Layers, Cpu, ArrowRight, ArrowUpRight } from 'lucide-react';
 import { ProjectItem } from '../../types';
 
 interface ProjectModalProps {
@@ -30,6 +30,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
       role="dialog"
       aria-modal="true"
       aria-labelledby="modal-title"
+      onClick={onClose}
     >
       <div
         className="relative w-full max-w-2xl bg-brand-darkElevated border border-brand-border rounded-2xl shadow-2xl max-h-[90vh] overflow-y-auto no-scrollbar"
@@ -147,13 +148,24 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
           </div>
 
           {/* CTA Inside Modal */}
-          <div className="pt-4 border-t border-brand-borderMuted/40 flex justify-end gap-3">
+          <div className="pt-4 border-t border-brand-borderMuted/40 flex flex-wrap justify-end gap-3">
             <button
               onClick={onClose}
               className="px-5 py-2.5 rounded-lg bg-brand-card hover:bg-brand-cardHover border border-brand-border text-slate-300 text-xs font-mono tracking-wider transition-colors"
             >
               Fechar
             </button>
+            {project.link && (
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-5 py-2.5 rounded-lg bg-brand-dark hover:bg-brand-card border border-brand-gold/40 hover:border-brand-gold text-brand-gold text-xs font-mono font-bold tracking-wider uppercase transition-colors flex items-center gap-1.5"
+              >
+                <span>Acessar Projeto</span>
+                <ArrowUpRight className="w-3.5 h-3.5" />
+              </a>
+            )}
             <a
               href="#contato"
               onClick={onClose}
