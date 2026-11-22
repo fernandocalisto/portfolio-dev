@@ -1,4 +1,4 @@
-import type { ApiRequest, ApiResponse, ContactSource, ContactSubject } from './types';
+import type { ApiRequest, ApiResponse, ContactSource, ContactSubject } from './types.js';
 
 const ALLOWED_SUBJECTS: readonly ContactSubject[] = [
   'talos',

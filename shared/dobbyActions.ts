@@ -1,11 +1,11 @@
-import { EMAIL_REGEX } from './security';
+import { EMAIL_REGEX } from './security.js';
 import type {
   ContactSubject,
   DobbyAction,
   LeadDraft,
   ProjectId,
   ScrollableSectionId,
-} from './types';
+} from './types.js';
 
 const DEFAULT_PROJECT_IDS: readonly ProjectId[] = [
   'talos',

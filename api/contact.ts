@@ -1,6 +1,6 @@
-import { PROFILE } from '../shared/portfolioData';
-import { applyCorsHeaders, escapeHtml, validateContactPayload } from '../shared/security';
-import type { ApiRequest, ApiResponse, ContactSource, ContactSubject } from '../shared/types';
+import { PROFILE } from '../shared/portfolioData.js';
+import { applyCorsHeaders, escapeHtml, validateContactPayload } from '../shared/security.js';
+import type { ApiRequest, ApiResponse, ContactSource, ContactSubject } from '../shared/types.js';
 
 const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000; // 1 hour
 const RATE_LIMIT_MAX_REQUESTS = 5;

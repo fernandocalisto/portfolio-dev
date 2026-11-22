@@ -6,7 +6,7 @@ import type {
   ResolvedOrbitProject,
   SkillSpec,
   TimelineSpec,
-} from './types';
+} from './types.js';
 
 export const MAX_ORBIT_PROJECTS = 6;
 

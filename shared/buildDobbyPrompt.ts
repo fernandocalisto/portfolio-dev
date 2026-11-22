@@ -1,5 +1,5 @@
-import { PROFILE, PROJECTS, SKILLS, TIMELINE } from './portfolioData';
-import type { Locale } from './types';
+import { PROFILE, PROJECTS, SKILLS, TIMELINE } from './portfolioData.js';
+import type { Locale } from './types.js';
 
 export function buildDobbyPrompt(locale: Locale = 'pt'): string {
   const projectsBlock = PROJECTS.map((project, idx) => {

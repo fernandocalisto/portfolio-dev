@@ -1,6 +1,6 @@
-import { buildDobbyPrompt } from '../shared/buildDobbyPrompt';
-import { applyCorsHeaders } from '../shared/security';
-import type { ApiRequest, ApiResponse, Locale } from '../shared/types';
+import { buildDobbyPrompt } from '../shared/buildDobbyPrompt.js';
+import { applyCorsHeaders } from '../shared/security.js';
+import type { ApiRequest, ApiResponse, Locale } from '../shared/types.js';
 
 const RATE_LIMIT_WINDOW_MS = 60 * 1000; // 1 minute
 const RATE_LIMIT_MAX_REQUESTS = 25;
