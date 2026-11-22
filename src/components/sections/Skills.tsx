@@ -36,6 +36,12 @@ const CATEGORY_IDS: readonly CategoryFilter[] = [
   'database',
 ];
 
+const EN_SKILL_NAME_MAP: Record<string, string> = {
+  'ai-automation': 'AI & Automation (n8n, LLMs)',
+  opencv: 'OpenCV & Computer Vision',
+  'rest-apis': 'REST & Microservices Architecture',
+};
+
 function renderSkillIcon(iconName: string): React.ReactNode {
   const iconClass = 'w-6 h-6';
   switch (iconName) {
@@ -224,7 +230,9 @@ export const Skills: React.FC<SkillsProps> = ({
                     {skill.categoryLabel[locale]}
                   </span>
                   <h3 className="font-display text-base font-semibold text-brand-ivory leading-snug">
-                    {skill.name}
+                    {locale === 'en' && EN_SKILL_NAME_MAP[skill.id]
+                      ? EN_SKILL_NAME_MAP[skill.id]
+                      : skill.name}
                   </h3>
                 </div>
 

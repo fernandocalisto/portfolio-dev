@@ -30,6 +30,10 @@ export const LocaleProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
   useEffect(() => {
     document.documentElement.lang = locale === 'en' ? 'en' : 'pt-BR';
+    document.title =
+      locale === 'en'
+        ? 'Fernando Henrique Braga Calisto | Software Architect & Full-Stack Developer'
+        : 'Fernando Henrique Braga Calisto | Arquiteto de Software & Desenvolvedor Full-Stack';
     try {
       localStorage.setItem(LOCALE_STORAGE_KEY, locale);
     } catch {

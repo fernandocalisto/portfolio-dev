@@ -544,20 +544,20 @@ export const SaturnPortfolioScene: React.FC<SaturnPortfolioSceneProps> = ({ onSe
       camera.aspect = aspect;
 
       if (isMobile) {
-        // Pull camera back proportionally so full Saturn + outer ring fit in upper half
+        // Pull camera back proportionally and lift Saturn cleanly into the upper viewport
         const halfFovTan = Math.tan(THREE.MathUtils.degToRad(camera.fov * 0.5));
-        const requiredDistForWidth = 4.1 / (halfFovTan * Math.max(aspect, 0.42));
-        const camZ = Math.min(Math.max(requiredDistForWidth, 12.2), 20.5);
-        camera.position.set(0, 1.5, camZ);
-        saturnRoot.position.set(0, camZ * 0.14, 0);
+        const requiredDistForWidth = 4.35 / (halfFovTan * Math.max(aspect, 0.42));
+        const camZ = Math.min(Math.max(requiredDistForWidth, 13.0), 21.0);
+        camera.position.set(0, 1.35, camZ);
+        saturnRoot.position.set(0, camZ * 0.23, 0);
         camera.lookAt(0, 0, 0);
       } else if (isTablet) {
-        camera.position.set(0, 1.35, 11.4);
-        saturnRoot.position.set(1.05, 0.35, 0);
+        camera.position.set(0, 1.35, 11.8);
+        saturnRoot.position.set(1.35, 0.35, 0);
         camera.lookAt(0, 0, 0);
       } else {
-        camera.position.set(0, 1.25, 9.8);
-        saturnRoot.position.set(1.75, 0.12, 0);
+        camera.position.set(0, 1.25, 10.35);
+        saturnRoot.position.set(2.15, 0.14, 0);
         camera.lookAt(0, 0, 0);
       }
 

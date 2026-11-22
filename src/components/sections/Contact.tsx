@@ -354,6 +354,7 @@ export const Contact: React.FC<ContactProps> = ({
                         subject: e.target.value as ContactSubject,
                       }))
                     }
+                    style={{ appearance: 'none', WebkitAppearance: 'none', MozAppearance: 'none' }}
                     className="w-full appearance-none bg-brand-obsidian border border-brand-hairline rounded-xl px-4 py-3 pr-10 text-brand-ivory font-sans text-sm focus:border-brand-gold focus:ring-1 focus:ring-brand-gold outline-none transition-colors cursor-pointer"
                   >
                     {CONTACT_SUBJECTS.map((subj) => (

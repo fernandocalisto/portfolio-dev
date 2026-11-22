@@ -71,9 +71,9 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, []);
 
-  // Auto-scroll when messages update or chips are manually opened
+  // Auto-scroll when conversation advances or chips are manually toggled
   useEffect(() => {
-    if (isOpen) {
+    if (isOpen && (messages.length > 1 || manualShowChips)) {
       scrollToBottom();
     }
   }, [messages, isOpen, manualShowChips, scrollToBottom]);

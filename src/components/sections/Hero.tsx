@@ -83,18 +83,17 @@ export const Hero: React.FC<HeroProps> = ({ onSelectProject }) => {
       />
 
       {/* Editorial Foreground Layer */}
-      <div className="relative z-20 pointer-events-none flex-1 flex flex-col justify-end lg:justify-center max-w-7xl w-full mx-auto px-6 sm:px-10 pt-[46svh] sm:pt-32 lg:pt-24 pb-10 sm:pb-14">
-        <div className="max-w-2xl space-y-6 sm:space-y-7 animate-slideUp">
+      <div className="relative z-20 pointer-events-none flex-1 flex flex-col justify-end lg:justify-center max-w-7xl w-full mx-auto px-6 sm:px-10 pt-[43svh] sm:pt-32 lg:pt-24 pb-6 sm:pb-12">
+        <div className="max-w-xl lg:max-w-[36rem] space-y-4 sm:space-y-6 animate-slideUp">
           {/* Subtle Availability Indicator + Atelier Eyebrow */}
-          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs sm:text-sm">
+          <div className="flex flex-col gap-1.5 text-xs sm:text-sm">
             <span className="inline-flex items-center gap-2.5 text-brand-ivory/90 font-sans">
-              <span className="relative flex h-2 w-2" aria-hidden="true">
+              <span className="relative flex h-2 w-2 shrink-0" aria-hidden="true">
                 <span className="animate-orbitPulse absolute inline-flex h-full w-full rounded-full bg-brand-tealLight opacity-75" />
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-tealLight" />
               </span>
               {t.hero.availability}
             </span>
-            <span aria-hidden="true" className="hidden sm:inline-block h-3.5 w-px bg-brand-hairline" />
             <span className="hidden sm:inline-block font-mono text-[11px] tracking-[0.14em] uppercase text-brand-gold/90">
               {t.hero.eyebrow}
             </span>
@@ -102,8 +101,8 @@ export const Hero: React.FC<HeroProps> = ({ onSelectProject }) => {
 
           {/* Monumental Fraunces Display Headline */}
           <h1
-            className="font-display font-semibold tracking-[-0.025em] leading-[1.02] text-brand-ivory"
-            style={{ fontSize: 'clamp(2.6rem, 7.5vw, 6.2rem)' }}
+            className="font-display font-semibold tracking-[-0.025em] leading-[1.03] text-brand-ivory"
+            style={{ fontSize: 'clamp(2.3rem, 6.8vw, 5.6rem)' }}
           >
             <span className="block">{t.hero.headlineFirst}</span>
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-brand-ivory via-brand-gold to-brand-copper">
@@ -112,15 +111,15 @@ export const Hero: React.FC<HeroProps> = ({ onSelectProject }) => {
           </h1>
 
           {/* Concise Localized Tagline */}
-          <p className="font-sans text-base sm:text-lg md:text-[1.15rem] text-brand-muted leading-relaxed max-w-xl">
+          <p className="font-sans text-sm sm:text-lg text-brand-muted leading-relaxed max-w-lg">
             {t.hero.tagline}
           </p>
 
           {/* Two Clean Editorial CTAs */}
-          <div className="pt-1 flex flex-wrap items-center gap-3.5 sm:gap-4 pointer-events-auto">
+          <div className="pt-1 flex flex-wrap items-center gap-3 sm:gap-4 pointer-events-auto">
             <a
               href="#laboratorio"
-              className="group inline-flex items-center gap-2.5 rounded-full bg-brand-copper hover:bg-brand-gold text-brand-obsidian font-sans font-semibold text-sm sm:text-[15px] px-6 sm:px-7 py-3.5 transition-all duration-300 shadow-glow-copper focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-brand-obsidian"
+              className="group inline-flex items-center gap-2 rounded-full bg-brand-copper hover:bg-brand-gold text-brand-obsidian font-sans font-semibold text-sm sm:text-[15px] px-5 sm:px-7 py-3 sm:py-3.5 transition-all duration-300 shadow-glow-copper focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-brand-obsidian"
             >
               <span>{t.hero.primaryCta}</span>
               <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
@@ -128,14 +127,14 @@ export const Hero: React.FC<HeroProps> = ({ onSelectProject }) => {
 
             <a
               href="#contato"
-              className="inline-flex items-center gap-2 rounded-full bg-brand-surface/70 backdrop-blur-md border border-brand-hairline hover:border-brand-gold/70 text-brand-ivory hover:text-brand-gold font-sans font-medium text-sm sm:text-[15px] px-6 sm:px-7 py-3.5 transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-brand-obsidian"
+              className="inline-flex items-center gap-2 rounded-full bg-brand-surface/75 backdrop-blur-md border border-brand-hairline hover:border-brand-gold/70 text-brand-ivory hover:text-brand-gold font-sans font-medium text-sm sm:text-[15px] px-5 sm:px-7 py-3 sm:py-3.5 transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-brand-obsidian"
             >
               <span>{t.hero.secondaryCta}</span>
             </a>
           </div>
 
           {/* Subtle Orbital Interaction Hint */}
-          <p className="inline-flex items-center gap-2 font-mono text-[11px] sm:text-xs text-brand-muted/90 pt-1">
+          <p className="hidden sm:inline-flex items-center gap-2 font-mono text-[11px] sm:text-xs text-brand-muted/90 pt-1">
             <Compass className="w-3.5 h-3.5 text-brand-gold shrink-0" aria-hidden="true" />
             <span>{t.hero.orbitHint}</span>
           </p>
