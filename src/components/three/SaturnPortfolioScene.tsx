@@ -7,6 +7,7 @@ import { SaturnFallbackSvg } from './SaturnFallbackSvg';
 
 export interface SaturnPortfolioSceneProps {
   onSelectProject: (projectId: ProjectId) => void;
+  layoutMode?: 'fullbleed' | 'stage';
 }
 
 const PLANET_VERTEX_SHADER = /* glsl */ `
@@ -184,7 +185,10 @@ function createGlowTexture(): THREE.CanvasTexture {
   return texture;
 }
 
-export const SaturnPortfolioScene: React.FC<SaturnPortfolioSceneProps> = ({ onSelectProject }) => {
+export const SaturnPortfolioScene: React.FC<SaturnPortfolioSceneProps> = ({
+  onSelectProject,
+  layoutMode = 'fullbleed',
+}) => {
   const { locale, t } = useLocale();
   const containerRef = useRef<HTMLDivElement | null>(null);
   const canvasMountRef = useRef<HTMLDivElement | null>(null);
@@ -540,11 +544,19 @@ export const SaturnPortfolioScene: React.FC<SaturnPortfolioSceneProps> = ({ onSe
       renderer.setSize(viewportWidth, viewportHeight);
       ringParticleUniforms.uPixelRatio.value = dpr;
 
-      camera.fov = isMobile ? 46 : 42;
+      camera.fov = layoutMode === 'stage' ? 42 : isMobile ? 46 : 42;
       camera.aspect = aspect;
 
-      if (isMobile) {
-        // Pull camera back proportionally and lift Saturn cleanly into the upper viewport
+      if (layoutMode === 'stage') {
+        // Dedicated centered stage (mobile/tablet): frame Saturn boldly in the center
+        const halfFovTan = Math.tan(THREE.MathUtils.degToRad(camera.fov * 0.5));
+        const requiredDistForWidth = 4.15 / (halfFovTan * Math.max(aspect, 0.85));
+        const requiredDistForHeight = 2.65 / halfFovTan;
+        const camZ = Math.min(Math.max(requiredDistForWidth, requiredDistForHeight, 10.4), 14.2);
+        camera.position.set(0, 1.35, camZ);
+        saturnRoot.position.set(0, 0, 0);
+        camera.lookAt(0, 0, 0);
+      } else if (isMobile) {
         const halfFovTan = Math.tan(THREE.MathUtils.degToRad(camera.fov * 0.5));
         const requiredDistForWidth = 4.35 / (halfFovTan * Math.max(aspect, 0.42));
         const camZ = Math.min(Math.max(requiredDistForWidth, 13.0), 21.0);
@@ -731,9 +743,19 @@ export const SaturnPortfolioScene: React.FC<SaturnPortfolioSceneProps> = ({ onSe
 
         const rawSx = (projVec.x * 0.5 + 0.5) * viewportWidth;
         const rawSy = (-projVec.y * 0.5 + 0.5) * viewportHeight;
-        const edgePadX = viewportWidth < 640 ? 48 : 64;
-        const sx = THREE.MathUtils.clamp(rawSx, edgePadX, viewportWidth - edgePadX);
-        const sy = THREE.MathUtils.clamp(rawSy, 48, viewportHeight - 48);
+
+        // Nudge label slightly radially outward from planet center so the planet core stays unobstructed
+        const rdx = rawSx - planetScreenX;
+        const rdy = rawSy - planetScreenY;
+        const rawDist = Math.hypot(rdx, rdy) || 1;
+        const radialPush = layoutMode === 'stage' ? 16 : viewportWidth < 640 ? 14 : 6;
+        const pushedSx = rawSx + (rdx / rawDist) * radialPush;
+        const pushedSy = rawSy + (rdy / rawDist) * radialPush;
+
+        const edgePadX = viewportWidth < 640 ? 46 : 64;
+        const edgePadY = layoutMode === 'stage' ? 24 : 48;
+        const sx = THREE.MathUtils.clamp(pushedSx, edgePadX, viewportWidth - edgePadX);
+        const sy = THREE.MathUtils.clamp(pushedSy, edgePadY, viewportHeight - edgePadY);
 
         const isActive = hoveredIdRef.current === sat.id;
         // View space looks down -Z: larger z is closer to camera
@@ -741,28 +763,37 @@ export const SaturnPortfolioScene: React.FC<SaturnPortfolioSceneProps> = ({ onSe
         const depthFactor = THREE.MathUtils.clamp((relZ + 3.6) / 7.2, 0, 1);
 
         const distFromPlanetCenter = Math.hypot(sx - planetScreenX, sy - planetScreenY);
-        const isOccludedBehindPlanet = relZ < -0.15 && distFromPlanetCenter < planetScreenRadius * 0.96;
+        const isOccludedBehindPlanet = relZ < 0.1 && distFromPlanetCenter < planetScreenRadius * 1.15;
+        const isCrossingFrontCore =
+          layoutMode === 'stage' &&
+          relZ >= 0.1 &&
+          distFromPlanetCenter < planetScreenRadius * 0.95;
 
-        let scale = 0.8 + depthFactor * 0.24;
-        let opacity = 0.56 + depthFactor * 0.44;
+        let scale = (layoutMode === 'stage' ? 0.78 : 0.82) + depthFactor * 0.22;
+        let opacity = 0.52 + depthFactor * 0.48;
         let zIndex = Math.round(10 + depthFactor * 14);
+        let pointerEvents: 'auto' | 'none' = 'auto';
 
         if (isOccludedBehindPlanet && !isActive) {
-          opacity = 0.24;
-          scale = 0.76;
+          opacity = 0.14;
+          scale = 0.72;
           zIndex = 5;
+          pointerEvents = 'none';
+        } else if (isCrossingFrontCore && !isActive) {
+          opacity = 0.72;
         }
 
         if (isActive) {
           scale = 1.08;
           opacity = 1;
           zIndex = 40;
+          pointerEvents = 'auto';
         }
 
         btn.style.transform = `translate3d(${sx.toFixed(1)}px, ${sy.toFixed(1)}px, 0) translate(-50%, -50%) scale(${scale.toFixed(3)})`;
         btn.style.opacity = opacity.toFixed(3);
         btn.style.zIndex = String(zIndex);
-        btn.style.pointerEvents = 'auto';
+        btn.style.pointerEvents = pointerEvents;
       }
     };
 
@@ -826,7 +857,7 @@ export const SaturnPortfolioScene: React.FC<SaturnPortfolioSceneProps> = ({ onSe
         mount.removeChild(renderer.domElement);
       }
     };
-  }, [webglFailed]);
+  }, [webglFailed, layoutMode]);
 
   if (webglFailed) {
     return <SaturnFallbackSvg onSelectProject={onSelectProject} />;
@@ -878,21 +909,21 @@ export const SaturnPortfolioScene: React.FC<SaturnPortfolioSceneProps> = ({ onSe
                 opacity: 0,
                 willChange: 'transform, opacity',
               }}
-              className={`group absolute flex items-center gap-2 rounded-full px-2.5 py-1.5 backdrop-blur-md border transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold shadow-lg ${
+              className={`group absolute flex items-center gap-1.5 sm:gap-2 rounded-full px-2 py-1 sm:px-2.5 sm:py-1.5 backdrop-blur-md border transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold shadow-lg ${
                 isActive
                   ? 'bg-brand-obsidian/95 border-brand-gold/80 text-brand-ivory shadow-glow-gold'
-                  : 'bg-brand-surface/75 border-brand-hairline/90 hover:border-brand-gold/70 text-brand-ivory/95'
+                  : 'bg-brand-obsidian/65 sm:bg-brand-surface/75 border-brand-hairline/80 hover:border-brand-gold/70 text-brand-ivory/95'
               }`}
             >
               <span
                 aria-hidden="true"
-                className="h-2.5 w-2.5 shrink-0 rounded-full"
+                className="h-2 w-2 sm:h-2.5 sm:w-2.5 shrink-0 rounded-full"
                 style={{
                   backgroundColor: project.badgeTextColor,
                   boxShadow: `0 0 12px ${project.accentColor}`,
                 }}
               />
-              <span className="font-mono text-[11px] sm:text-xs font-medium tracking-wide whitespace-nowrap">
+              <span className="font-mono text-[10px] sm:text-xs font-medium tracking-wide whitespace-nowrap">
                 {project.shortName}
               </span>
 
