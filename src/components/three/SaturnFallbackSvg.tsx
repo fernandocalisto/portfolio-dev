@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { PROJECTS } from '../../../shared/portfolioData';
+import { getOrbitProjects } from '../../../shared/portfolioData';
 import type { ProjectId, ProjectSpec } from '../../../shared/types';
 import { useLocale } from '../../context/LocaleContext';
 
@@ -87,8 +87,8 @@ export const SaturnFallbackSvg: React.FC<SaturnFallbackSvgProps> = ({ onSelectPr
   }, []);
 
   const nodes = useMemo<ProjectedSvgNode[]>(() => {
-    return PROJECTS.map((project) => {
-      const pt = projectOrbitPoint(project.orbit.radius, project.orbit.initialAngle);
+    return getOrbitProjects().map(({ project, orbit }) => {
+      const pt = projectOrbitPoint(orbit.radius, orbit.initialAngle);
       return {
         project,
         leftPct: (pt.x / VIEWBOX_W) * 100,

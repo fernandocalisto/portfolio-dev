@@ -1,6 +1,13 @@
 import { describe, expect, it } from 'vitest';
 import { buildDobbyPrompt } from '../buildDobbyPrompt';
-import { PROFILE, PROJECTS, PROJECT_IDS, SKILLS } from '../portfolioData';
+import {
+  MAX_ORBIT_PROJECTS,
+  PROFILE,
+  PROJECTS,
+  PROJECT_IDS,
+  SKILLS,
+  getOrbitProjects,
+} from '../portfolioData';
 
 describe('shared portfolioData & buildDobbyPrompt', () => {
   it('generates PT and EN prompts containing all 5 projects, official email and action directives', () => {
@@ -43,5 +50,33 @@ describe('shared portfolioData & buildDobbyPrompt', () => {
         expect(PROJECT_IDS).toContain(pid);
       }
     }
+  });
+
+  it('curates orbit projects by showInOrbit, balances ring angles automatically and enforces MAX_ORBIT_PROJECTS cap', () => {
+    const defaultOrbit = getOrbitProjects();
+    expect(defaultOrbit).toHaveLength(5);
+
+    const base = PROJECTS[0];
+    const mixed = [
+      { ...base, showInOrbit: true, orbit: undefined },
+      { ...base, showInOrbit: false, orbit: undefined },
+      { ...base, showInOrbit: true, orbit: undefined },
+      { ...base, showInOrbit: true, orbit: undefined },
+      { ...base, showInOrbit: true, orbit: undefined },
+      { ...base, showInOrbit: true, orbit: undefined },
+      { ...base, showInOrbit: true, orbit: undefined },
+      { ...base, showInOrbit: true, orbit: undefined },
+    ];
+
+    const resolved = getOrbitProjects(mixed);
+    expect(resolved).toHaveLength(MAX_ORBIT_PROJECTS);
+
+    // First and fourth share ring 0 and must be spaced apart by PI radians automatically
+    const ring0 = resolved.filter((r) => r.orbit.ringIndex === 0);
+    expect(ring0).toHaveLength(2);
+    expect(Math.abs(ring0[1].orbit.initialAngle - ring0[0].orbit.initialAngle)).toBeCloseTo(
+      Math.PI,
+      5
+    );
   });
 });

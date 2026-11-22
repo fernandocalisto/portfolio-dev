@@ -1,10 +1,20 @@
 import type {
   ProfileData,
   ProjectId,
+  ProjectOrbitConfig,
   ProjectSpec,
+  ResolvedOrbitProject,
   SkillSpec,
   TimelineSpec,
 } from './types';
+
+export const MAX_ORBIT_PROJECTS = 6;
+
+const ORBIT_RING_PRESETS: readonly { radius: number; speed: number; phaseOffset: number; defaultSize: number }[] = [
+  { radius: 2.35, speed: 0.24, phaseOffset: 0.35, defaultSize: 0.14 },
+  { radius: 2.95, speed: 0.19, phaseOffset: 1.45, defaultSize: 0.135 },
+  { radius: 3.45, speed: 0.15, phaseOffset: 2.55, defaultSize: 0.13 },
+];
 
 export const PROFILE: ProfileData = {
   fullName: 'Fernando Henrique Braga Calisto',
@@ -103,8 +113,9 @@ export const PROJECTS: readonly ProjectSpec[] = [
       },
     ],
     featured: true,
+    showInOrbit: true,
     link: 'https://talos.fernandocalisto.com.br',
-    orbit: { ringIndex: 0, radius: 2.35, speed: 0.24, initialAngle: 0.4, size: 0.145 },
+    orbit: { ringIndex: 0, size: 0.145 },
     diagram: {
       viewBoxWidth: 680,
       viewBoxHeight: 220,
@@ -242,8 +253,9 @@ export const PROJECTS: readonly ProjectSpec[] = [
       },
     ],
     featured: true,
+    showInOrbit: true,
     link: 'https://www.linkedin.com/company/drakon-code',
-    orbit: { ringIndex: 1, radius: 2.95, speed: 0.19, initialAngle: 2.1, size: 0.135 },
+    orbit: { ringIndex: 1, size: 0.135 },
     diagram: {
       viewBoxWidth: 680,
       viewBoxHeight: 220,
@@ -380,8 +392,9 @@ export const PROJECTS: readonly ProjectSpec[] = [
       },
     ],
     featured: true,
+    showInOrbit: true,
     link: 'https://github.com/fernandocalisto',
-    orbit: { ringIndex: 2, radius: 3.45, speed: 0.15, initialAngle: 3.7, size: 0.13 },
+    orbit: { ringIndex: 2, size: 0.13 },
     diagram: {
       viewBoxWidth: 680,
       viewBoxHeight: 220,
@@ -519,8 +532,9 @@ export const PROJECTS: readonly ProjectSpec[] = [
       },
     ],
     featured: true,
+    showInOrbit: true,
     link: 'https://marketplace.visualstudio.com/items?itemName=fernandocalisto.jasper-reports-tools',
-    orbit: { ringIndex: 0, radius: 2.35, speed: 0.24, initialAngle: 3.54, size: 0.13 },
+    orbit: { ringIndex: 0, size: 0.13 },
     diagram: {
       viewBoxWidth: 680,
       viewBoxHeight: 220,
@@ -657,7 +671,8 @@ export const PROJECTS: readonly ProjectSpec[] = [
       },
     ],
     featured: true,
-    orbit: { ringIndex: 1, radius: 2.95, speed: 0.19, initialAngle: 5.2, size: 0.14 },
+    showInOrbit: true,
+    orbit: { ringIndex: 1, size: 0.14 },
     diagram: {
       viewBoxWidth: 680,
       viewBoxHeight: 220,
@@ -931,4 +946,49 @@ export const TIMELINE: readonly TimelineSpec[] = [
 
 export function getProjectById(id: string): ProjectSpec | undefined {
   return PROJECTS.find((p) => p.id === id);
+}
+
+/**
+ * Selects curated projects marked `showInOrbit: true` (capped at `maxCount`)
+ * and automatically balances ring assignment and angular spacing so new projects
+ * never overlap in the 3D Saturn scene without manual radian math.
+ */
+export function getOrbitProjects(
+  projects: readonly ProjectSpec[] = PROJECTS,
+  maxCount: number = MAX_ORBIT_PROJECTS
+): ResolvedOrbitProject[] {
+  const curated = projects.filter((p) => p.showInOrbit).slice(0, Math.max(0, maxCount));
+
+  // Assign each project to a ring (explicit override or round-robin across 3 rings)
+  const ringBuckets: [ProjectSpec[], ProjectSpec[], ProjectSpec[]] = [[], [], []];
+  curated.forEach((project, idx) => {
+    const preferredRing = project.orbit?.ringIndex;
+    const ringIndex: 0 | 1 | 2 =
+      preferredRing === 0 || preferredRing === 1 || preferredRing === 2
+        ? preferredRing
+        : ((idx % 3) as 0 | 1 | 2);
+    ringBuckets[ringIndex].push(project);
+  });
+
+  // Resolve balanced orbital parameters per project while preserving input order
+  const resolvedById = new Map<ProjectSpec, ProjectOrbitConfig>();
+  ringBuckets.forEach((bucket, ringIdx) => {
+    const preset = ORBIT_RING_PRESETS[ringIdx];
+    const count = bucket.length;
+    bucket.forEach((project, slotIdx) => {
+      const autoAngle = preset.phaseOffset + (2 * Math.PI * slotIdx) / Math.max(count, 1);
+      resolvedById.set(project, {
+        ringIndex: ringIdx as 0 | 1 | 2,
+        radius: project.orbit?.radius ?? preset.radius,
+        speed: project.orbit?.speed ?? preset.speed,
+        initialAngle: project.orbit?.initialAngle ?? autoAngle,
+        size: project.orbit?.size ?? preset.defaultSize,
+      });
+    });
+  });
+
+  return curated.map((project) => ({
+    project,
+    orbit: resolvedById.get(project) as ProjectOrbitConfig,
+  }));
 }

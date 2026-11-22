@@ -1,6 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import * as THREE from 'three';
-import { PROJECTS } from '../../../shared/portfolioData';
+import { getOrbitProjects } from '../../../shared/portfolioData';
 import type { ProjectId } from '../../../shared/types';
 import { useLocale } from '../../context/LocaleContext';
 import { SaturnFallbackSvg } from './SaturnFallbackSvg';
@@ -190,6 +190,7 @@ export const SaturnPortfolioScene: React.FC<SaturnPortfolioSceneProps> = ({
   layoutMode = 'fullbleed',
 }) => {
   const { locale, t } = useLocale();
+  const orbitProjects = useMemo(() => getOrbitProjects(), []);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const canvasMountRef = useRef<HTMLDivElement | null>(null);
   const buttonRefs = useRef<Array<HTMLButtonElement | null>>([]);
@@ -465,10 +466,10 @@ export const SaturnPortfolioScene: React.FC<SaturnPortfolioSceneProps> = ({
       yOffset: number;
     }
 
-    const satellites: SatelliteRuntime[] = PROJECTS.map((project, index) => {
+    const satellites: SatelliteRuntime[] = orbitProjects.map(({ project, orbit }, index) => {
       const group = new THREE.Group();
 
-      const orbGeo = new THREE.SphereGeometry(project.orbit.size, 24, 24);
+      const orbGeo = new THREE.SphereGeometry(orbit.size, 24, 24);
       geometries.push(orbGeo);
       const orbMat = new THREE.MeshBasicMaterial({
         color: project.badgeTextColor,
@@ -478,7 +479,7 @@ export const SaturnPortfolioScene: React.FC<SaturnPortfolioSceneProps> = ({
       group.add(orbMesh);
 
       // Subtle ring around each satellite orb
-      const satRingGeo = new THREE.TorusGeometry(project.orbit.size * 1.65, 0.01, 8, 48);
+      const satRingGeo = new THREE.TorusGeometry(orbit.size * 1.65, 0.01, 8, 48);
       geometries.push(satRingGeo);
       const satRingMat = new THREE.MeshBasicMaterial({
         color: project.accentColor,
@@ -502,16 +503,16 @@ export const SaturnPortfolioScene: React.FC<SaturnPortfolioSceneProps> = ({
       });
       materials.push(haloMat);
       const halo = new THREE.Sprite(haloMat);
-      const baseHaloScale = project.orbit.size * 6.4;
+      const baseHaloScale = orbit.size * 6.4;
       halo.scale.set(baseHaloScale, baseHaloScale, 1);
       group.add(halo);
 
       // Slight vertical offset per ring index for organic parallax
       const yOffset = (index % 2 === 0 ? 1 : -1) * 0.04;
       group.position.set(
-        Math.cos(project.orbit.initialAngle) * project.orbit.radius,
+        Math.cos(orbit.initialAngle) * orbit.radius,
         yOffset,
-        Math.sin(project.orbit.initialAngle) * project.orbit.radius
+        Math.sin(orbit.initialAngle) * orbit.radius
       );
 
       tiltedGroup.add(group);
@@ -521,9 +522,9 @@ export const SaturnPortfolioScene: React.FC<SaturnPortfolioSceneProps> = ({
         group,
         halo,
         baseHaloScale,
-        angle: project.orbit.initialAngle,
-        radius: project.orbit.radius,
-        speed: project.orbit.speed,
+        angle: orbit.initialAngle,
+        radius: orbit.radius,
+        speed: orbit.speed,
         yOffset,
       };
     });
@@ -857,7 +858,7 @@ export const SaturnPortfolioScene: React.FC<SaturnPortfolioSceneProps> = ({
         mount.removeChild(renderer.domElement);
       }
     };
-  }, [webglFailed, layoutMode]);
+  }, [webglFailed, layoutMode, orbitProjects]);
 
   if (webglFailed) {
     return <SaturnFallbackSvg onSelectProject={onSelectProject} />;
@@ -880,7 +881,7 @@ export const SaturnPortfolioScene: React.FC<SaturnPortfolioSceneProps> = ({
 
       {/* Synchronized 3D -> 2D HTML Project Satellite Buttons */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {PROJECTS.map((project, index) => {
+        {orbitProjects.map(({ project }, index) => {
           const isActive = hoveredId === project.id;
           return (
             <button

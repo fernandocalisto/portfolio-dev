@@ -59,6 +59,11 @@ export interface ProjectOrbitConfig {
   size: number;
 }
 
+export interface ResolvedOrbitProject {
+  project: ProjectSpec;
+  orbit: ProjectOrbitConfig;
+}
+
 export interface ProjectSpec {
   id: ProjectId;
   shortName: string;
@@ -77,8 +82,11 @@ export interface ProjectSpec {
   skillIds: readonly string[];
   metrics: readonly LocalizedString[];
   featured: boolean;
+  /** Controls whether this project orbits Saturn in the 3D Hero (up to MAX_ORBIT_PROJECTS). */
+  showInOrbit: boolean;
   link?: string;
-  orbit: ProjectOrbitConfig;
+  /** Optional manual overrides; rings and angles are balanced automatically when omitted. */
+  orbit?: Partial<ProjectOrbitConfig>;
   diagram: ProjectDiagramSpec;
 }
 
