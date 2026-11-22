@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Check, Copy } from 'lucide-react';
+import { sanitizeSafeUrl } from '../../../shared/security';
+import { useLocale } from '../../context/LocaleContext';
 
 interface ChatMessageContentProps {
   content: string;
@@ -14,9 +16,9 @@ export const ChatMessageContent: React.FC<ChatMessageContentProps> = ({
   if (!content && isStreaming) {
     return (
       <div className="flex items-center space-x-1.5 py-1">
-        <span className="w-2 h-2 rounded-full bg-brand-teal animate-bounce [animation-delay:-0.3s]"></span>
-        <span className="w-2 h-2 rounded-full bg-brand-teal animate-bounce [animation-delay:-0.15s]"></span>
-        <span className="w-2 h-2 rounded-full bg-brand-teal animate-bounce"></span>
+        <span className="w-2 h-2 rounded-full bg-brand-tealLight animate-bounce [animation-delay:-0.3s]" />
+        <span className="w-2 h-2 rounded-full bg-brand-tealLight animate-bounce [animation-delay:-0.15s]" />
+        <span className="w-2 h-2 rounded-full bg-brand-tealLight animate-bounce" />
       </div>
     );
   }
@@ -25,7 +27,7 @@ export const ChatMessageContent: React.FC<ChatMessageContentProps> = ({
   const parts = content.split(/(```[\s\S]*?```)/g);
 
   return (
-    <div className="text-sm leading-relaxed space-y-2 select-text">
+    <div className="text-sm leading-relaxed space-y-2 select-text break-words">
       {parts.map((part, index) => {
         if (part.startsWith('```') && part.endsWith('```')) {
           const match = part.match(/^```(\w+)?\n([\s\S]*?)```$/);
@@ -39,46 +41,67 @@ export const ChatMessageContent: React.FC<ChatMessageContentProps> = ({
       })}
 
       {isStreaming && (
-        <span className="inline-block w-1.5 h-4 ml-1 bg-brand-teal align-middle animate-pulse" />
+        <span className="inline-block w-1.5 h-4 ml-1 bg-brand-tealLight align-middle animate-pulse" />
       )}
     </div>
   );
 };
 
 const CodeBlock: React.FC<{ code: string; language: string }> = ({ code, language }) => {
+  const { t } = useLocale();
   const [copied, setCopied] = useState(false);
+  const timerRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (timerRef.current !== null) {
+        window.clearTimeout(timerRef.current);
+      }
+    };
+  }, []);
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(code);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    if (!navigator.clipboard?.writeText) return;
+    void navigator.clipboard
+      .writeText(code)
+      .then(() => {
+        setCopied(true);
+        if (timerRef.current !== null) {
+          window.clearTimeout(timerRef.current);
+        }
+        timerRef.current = window.setTimeout(() => setCopied(false), 2000);
+      })
+      .catch(() => {
+        // Ignore clipboard permission errors
+      });
   };
 
   return (
-    <div className="my-2 rounded-lg overflow-hidden border border-brand-border bg-brand-dark/90 text-xs">
-      <div className="flex items-center justify-between px-3 py-1.5 bg-brand-darkElevated border-b border-brand-border text-slate-400">
-        <span className="font-mono text-[11px] uppercase tracking-wider text-brand-teal">
+    <div className="my-2 rounded-lg overflow-hidden border border-brand-hairline bg-brand-obsidian/95 text-xs">
+      <div className="flex items-center justify-between px-3 py-1.5 bg-brand-surface border-b border-brand-hairline text-brand-muted">
+        <span className="font-mono text-[11px] uppercase tracking-wider text-brand-tealLight">
           {language}
         </span>
         <button
+          type="button"
           onClick={handleCopy}
-          className="flex items-center gap-1 hover:text-slate-200 transition-colors py-0.5 px-1.5 rounded"
-          title="Copiar código"
+          className="flex items-center gap-1 hover:text-brand-ivory transition-colors py-0.5 px-1.5 rounded"
+          title={t.chat.copyReply}
         >
           {copied ? (
             <>
               <Check className="w-3.5 h-3.5 text-emerald-400" />
-              <span className="text-[11px] text-emerald-400">Copiado</span>
+              <span className="text-[11px] text-emerald-400">{t.chat.copied}</span>
             </>
           ) : (
             <>
               <Copy className="w-3.5 h-3.5" />
-              <span className="text-[11px]">Copiar</span>
+              <span className="text-[11px]">{t.chat.copyReply}</span>
             </>
           )}
         </button>
       </div>
-      <pre className="p-3 overflow-x-auto font-mono text-slate-200 text-xs leading-relaxed">
+      <pre className="p-3 overflow-x-auto font-mono text-brand-ivory/90 text-xs leading-relaxed">
         <code>{code}</code>
       </pre>
     </div>
@@ -93,7 +116,6 @@ const TextBlock: React.FC<{ text: string }> = ({ text }) => {
       {lines.map((line, i) => {
         const trimmed = line.trim();
 
-        // Empty line becomes vertical space
         if (!trimmed) {
           return <div key={i} className="h-1.5" />;
         }
@@ -102,7 +124,7 @@ const TextBlock: React.FC<{ text: string }> = ({ text }) => {
         if (trimmed.startsWith('- ') || trimmed.startsWith('* ')) {
           return (
             <div key={i} className="flex items-start space-x-2 pl-1 my-0.5">
-              <span className="text-brand-teal mt-1 font-bold text-xs">•</span>
+              <span className="text-brand-tealLight mt-1 font-bold text-xs">•</span>
               <div className="flex-1">{renderFormattedInline(trimmed.substring(2))}</div>
             </div>
           );
@@ -145,7 +167,7 @@ function renderFormattedInline(str: string): React.ReactNode[] {
       return (
         <code
           key={index}
-          className="font-mono text-xs bg-brand-dark px-1.5 py-0.5 rounded text-brand-teal border border-brand-border/60 mx-0.5"
+          className="font-mono text-xs bg-brand-obsidian px-1.5 py-0.5 rounded text-brand-tealLight border border-brand-hairline mx-0.5"
         >
           {part.slice(1, -1)}
         </code>
@@ -161,18 +183,25 @@ function renderFormattedInline(str: string): React.ReactNode[] {
       );
     }
 
-    // Markdown Link: [label](url)
+    // Markdown Link: [label](url) — strictly sanitized against javascript:/data: XSS
     const linkMatch = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
     if (linkMatch) {
+      const label = linkMatch[1];
+      const safeHref = sanitizeSafeUrl(linkMatch[2]);
+
+      if (!safeHref) {
+        return <span key={index}>{label}</span>;
+      }
+
       return (
         <a
           key={index}
-          href={linkMatch[2]}
+          href={safeHref}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-brand-teal hover:text-brand-tealHover underline decoration-brand-teal/40 hover:decoration-brand-teal transition-colors font-medium inline-flex items-center gap-0.5"
+          className="text-brand-tealLight hover:text-brand-ivory underline decoration-brand-tealLight/50 hover:decoration-brand-tealLight transition-colors font-medium inline-flex items-center gap-0.5"
         >
-          {linkMatch[1]}
+          {label}
         </a>
       );
     }
