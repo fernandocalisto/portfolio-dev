@@ -5,7 +5,7 @@ import { useLocale } from '../../context/LocaleContext';
 
 export const Timeline: React.FC = () => {
   const { locale, t } = useLocale();
-  const [currentIndex, setCurrentIndex] = useState(TIMELINE.length - 1);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   const handlePrev = useCallback(() => {
     setCurrentIndex((prev) => (prev > 0 ? prev - 1 : prev));
