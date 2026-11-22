@@ -18,8 +18,8 @@ export const PROFILE: ProfileData = {
     en: 'B.Sc. Candidate in Computer Engineering',
   },
   location: {
-    pt: 'Presidente Prudente — SP, Brasil (Remoto & Híbrido)',
-    en: 'Presidente Prudente — SP, Brazil (Remote & Hybrid)',
+    pt: 'Araçatuba — SP, Brasil (Remoto & Híbrido)',
+    en: 'Araçatuba — SP, Brazil (Remote & Hybrid)',
   },
   availability: {
     pt: 'Disponível para projetos B2B & oportunidades remotas',
