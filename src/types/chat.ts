@@ -1,3 +1,5 @@
+import type { Locale } from '../../shared/types';
+
 export type ChatRole = 'user' | 'model';
 
 export interface ChatMessage {
@@ -21,6 +23,7 @@ export interface ChatHistoryItem {
 export interface ChatRequestBody {
   message: string;
   history?: ChatHistoryItem[];
+  locale?: Locale;
 }
 
 export interface ChatStreamChunk {

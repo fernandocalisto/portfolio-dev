@@ -1,3 +1,25 @@
+export type {
+  ContactSource,
+  ContactSubject,
+  DiagramEdgeSpec,
+  DiagramNodeSpec,
+  DobbyAction,
+  LeadDraft,
+  Locale,
+  LocalizedString,
+  ProfileData,
+  ProjectCategory,
+  ProjectDiagramSpec,
+  ProjectId,
+  ProjectOrbitConfig,
+  ProjectSpec,
+  ScrollableSectionId,
+  SectionId,
+  SkillCategory,
+  SkillSpec,
+  TimelineSpec,
+} from '../../shared/types';
+
 export interface TimelineItem {
   year: string;
   title: string;

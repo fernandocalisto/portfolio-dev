@@ -1,133 +1,23 @@
-import { ProjectItem } from '../types';
+import { PROJECTS } from '../../shared/portfolioData';
+import type { ProjectItem } from '../types';
 
-export const projectsData: ProjectItem[] = [
-  {
-    id: 'talos',
-    title: 'TALOS — Automação Empresarial & IA',
-    subtitle: 'Soluções B2B Customizadas & Agentes Autônomos',
-    role: 'Fundador & Tech Lead Full-Stack',
-    category: 'startup',
-    tag: 'STARTUP B2B',
-    tagColor: '#ba460d',
-    accentColor: '#ba460d',
-    logo: '/assets/talos-logo.jpg',
-    summary: 'Desenvolvimento e arquitetura de soluções tecnológicas customizadas para empresas que buscam escalabilidade e eficiência operacional através de automação de processos complexos e inteligência artificial aplicada.',
-    challenge: 'Empresas perdem centenas de horas em tarefas manuais, reconciliações repetitivas e comunicação descentralizada, gerando custos operacionais altos e riscos de erros humanos.',
-    architecture: [
-      'Pipelines assíncronos orientados a eventos conectando bancos relacionais e APIs de parceiros',
-      'Orquestração de Agentes LLM com memória de contexto e ferramentas (Tool Calling)',
-      'Painéis administrativos em React + TypeScript com telemetria em tempo real'
-    ],
-    techStack: ['Java Spring Boot', 'Python', 'React', 'n8n', 'PostgreSQL', 'Docker', 'LLMs'],
-    metrics: [
-      'Redução de até 70% em tempo de processamento manual em fluxos corporativos',
-      'Integração multi-canal via webhooks e APIs RESTful seguras',
-      'Arquitetura modular pronta para expansão sob demanda'
-    ],
-    featured: true,
-    link: 'https://talos.fernandocalisto.com.br'
-  },
-  {
-    id: 'drakon',
-    title: 'DRAKON Code — Empresa Júnior',
-    subtitle: 'Sistemas Sob Medida para Transformação Regional',
-    role: 'CEO & Arquiteto de Software',
-    category: 'enterprise',
-    tag: 'EMPRESA JÚNIOR',
-    tagColor: '#c0261c',
-    accentColor: '#c0261c',
-    logo: '/assets/drakon-logo.png',
-    summary: 'Liderança executiva e arquitetura de sistemas na empresa júnior de Engenharia da Computação, impulsionando a transformação digital de negócios locais através de engenharia de software de padrão industrial.',
-    challenge: 'Pequenos e médios negócios regionais com processos analógicos sem acesso a consultorias de software de alta qualidade a preços justos.',
-    architecture: [
-      'Padrão MVC e Clean Architecture em Spring Boot para facilitar manutenção e escala por diferentes times de alunos',
-      'Deploy automatizado com containerização e bancos gerenciados em nuvem',
-      'Gestão ágil de engenharia com code review rigoroso e esteira CI/CD'
-    ],
-    techStack: ['Java', 'Spring Boot', 'TypeScript', 'React', 'PostgreSQL', 'Git / GitHub CI'],
-    metrics: [
-      'Liderança de time multidisciplinar de desenvolvedores e gerentes de produto',
-      'Múltiplos projetos entregues com alta satisfação de clientes locais',
-      'Capacitação prática contínua de novos talentos universitários'
-    ],
-    featured: true,
-    link: 'https://www.linkedin.com/company/drakon-code'
-  },
-  {
-    id: 'ai-ecosystem',
-    title: 'Ecossistemas de Automação & IA',
-    subtitle: 'Pipelines Inteligentes, n8n & Orquestração de APIs',
-    role: 'Engenheiro de IA & Automação',
-    category: 'ai',
-    tag: 'AI-FIRST',
-    tagColor: '#185b63',
-    accentColor: '#185b63',
-    logo: '/assets/ai-logo.png',
-    summary: 'Construção de pipelines autônomos integrando APIs corporativas, rotinas em Python, nós de automação no n8n e modelos de linguagem para extração de dados, geração de relatórios e tomada de decisão preditiva.',
-    challenge: 'Sistemas legados desconectados que não dialogam entre si, gerando silos de dados e lentidão no fluxo decisório das empresas.',
-    architecture: [
-      'Pipelines híbridos executando scripts Python especializados em processamento assíncrono',
-      'Webhooks bidirecionais integrados a bancos de dados e sistemas de mensageria',
-      'Camada de sanitização de dados e roteamento inteligente com IA generativa'
-    ],
-    techStack: ['Python', 'n8n', 'OpenAI / Claude APIs', 'REST APIs', 'FastAPI', 'JSON Schema'],
-    metrics: [
-      'Execução 24/7 com tolerância a falhas e reprocessamento automático de erros',
-      'Automação de relatórios analíticos estratégicos para diretoria',
-      'Consistência de dados em tempo real entre CRM, ERP e canais de atendimento'
-    ],
-    featured: true,
-    link: 'https://github.com/fernandocalisto'
-  },
-  {
-    id: 'jasper',
-    title: 'JasperReports Developer Tools',
-    subtitle: 'Extensão VS Code para JasperReports',
-    role: 'Autor & Desenvolvedor',
-    category: 'devtool',
-    tag: 'VS CODE EXTENSION',
-    tagColor: '#0e639c',
-    accentColor: '#0e639c',
-    logo: '/assets/jasper-logo.jpg',
-    summary: 'Extensão leve e profissional para VS Code que substitui o Jaspersoft Studio — edição nativa de .jrxml, preview PDF em tempo real, integração com bancos de dados, deploy no JasperServer e autocomplete inteligente, com zero processos em background.',
-    challenge: 'O Jaspersoft Studio é pesado, baseado em Eclipse, consome memória excessiva, trava constantemente e exige um servidor rodando apenas para compilar relatórios — um fluxo insustentável para times corporativos e hospitalares.',
-    architecture: [
-      'Arquitetura Zero-Daemon: engine Java compila sob demanda e encerra imediatamente, sem processos residentes',
-      'Credenciais armazenadas com segurança no OS keyring (Windows/macOS/Linux) via VS Code SecretStorage',
-      'Preview PDF.js com live reload, field viewer com inspeção de SQL, snippets e autocomplete inteligente para $F{}, $P{}, $V{}'
-    ],
-    techStack: ['TypeScript', 'Node.js', 'Java', 'JasperReports 6.21', 'PostgreSQL', 'Oracle', 'VS Code API'],
-    metrics: [
-      'Publicado no VS Code Marketplace com suporte a PostgreSQL, Oracle e drivers customizados',
-      'Compilação e preview de relatórios sem servidor — apenas Java 11+ no PATH',
-      'Integração REST nativa com JasperServer v2 para deploy e gestão de relatórios'
-    ],
-    featured: true,
-    link: 'https://marketplace.visualstudio.com/items?itemName=fernandocalisto.jasper-reports-tools'
-  },
-  {
-    id: 'panoptes',
-    title: 'PANOPTES — Inteligência Forense & Visão Computacional',
-    subtitle: 'Triagem de Vídeos Air-Gapped, Query-by-Image & Cadeia de Custódia',
-    role: 'Arquiteto de Software & Visão Computacional',
-    category: 'ai',
-    tag: 'COMPUTER VISION & FORENSICS',
-    tagColor: '#c59538',
-    accentColor: '#c59538',
-    logo: '/assets/panoptes-logo.jpg',
-    summary: 'Plataforma forense 100% offline (air-gapped) inspirada em Argos Panoptes para triagem ultrarrápida de vídeos em CPU, seleção inteligente de "Frames Quentes" (Hot Frames), busca reversa multimodal por imagem e cadeia de custódia criptográfica imutável.',
-    challenge: 'Investigações periciais exigem analisar horas de vídeos em máquinas isoladas da internet e sem GPUs dedicadas, onde rodar modelos pesados frame a frame torna a análise lenta, custosa e inviável.',
-    architecture: [
-      'Funil de 3 estágios para "Frames Quentes": filtragem em < 1 ms/frame via luminância, variância do Laplaciano (nitidez), histograma HSV e distância de Hamming (dHash), seguida de gatilhos semânticos leves (Hotness Score)',
-      'Motor de busca multimodal Query-by-Image combinando hashes perceptuais (pHash/dHash), assinatura estrutural/facial e correlação de evidências entre casos via grafos (NetworkX)',
-      'Cadeia de custódia forense em SQLite (evidence.db) com log de auditoria encadeado via SHA-256, validação Human-in-the-Loop e emissão automatizada de Laudo Pericial em PDF/JSON'
-    ],
-    techStack: ['Python', 'OpenCV', 'NumPy / SciPy', 'NetworkX', 'SQLite (SHA-256)', 'Streamlit', 'ReportLab'],
-    metrics: [
-      'Descarte automático de >90% dos frames redundantes ou borrados antes da extração profunda em CPU',
-      'Operação 100% local (air-gapped) com verificação criptográfica de integridade da cadeia de custódia',
-      'Busca ativa Query-by-Image com ranqueamento explicável por cena, objetos, rosto/pose e hash perceptual'
-    ],
-    featured: true
-  }
-];
+export { PROJECTS, PROJECT_IDS, getProjectById } from '../../shared/portfolioData';
+
+export const projectsData: ProjectItem[] = PROJECTS.map((p) => ({
+  id: p.id,
+  title: p.title.pt,
+  subtitle: p.subtitle.pt,
+  role: p.role.pt,
+  category: p.category,
+  tag: p.tag.pt,
+  tagColor: p.badgeTextColor,
+  accentColor: p.accentColor,
+  logo: p.logo,
+  summary: p.summary.pt,
+  challenge: p.challenge.pt,
+  architecture: p.architecture.map((a) => a.pt),
+  techStack: [...p.techStack],
+  metrics: p.metrics.map((m) => m.pt),
+  featured: p.featured,
+  link: p.link,
+}));
